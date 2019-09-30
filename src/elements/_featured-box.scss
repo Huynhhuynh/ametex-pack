@@ -1,0 +1,43 @@
+.__e-featured-box {
+
+    &__inner {
+        padding: 30px 40px;
+        background: #FFF;
+        box-shadow: 0 12px 40px -8px rgba(1,1,1,.1);
+        border-radius: 3px;
+        transition: .3s ease;
+        -webkit-transition: .3s ease;
+
+        &:hover {
+            transform: translateY(-6px);
+            -webkit-transform: translateY(-6px);
+            box-shadow: 0 22px 40px -8px rgba(1,1,1,.1);
+        }
+
+        .featured-icon {
+            margin-bottom: 35px;
+            margin-top: 10px;
+
+            .__icon {
+                width: 90px;
+                max-width: 100%;
+                padding: 24px;
+                border-radius: 100px;
+                box-shadow: 10px 10px 18px -8px rgba(1,1,1,.1);
+                transition: transform .2s ease;
+                -webkit-transition: transform .2s ease;
+            }
+        }
+
+        .featured-entry {
+
+            .title {
+                font-size: 1.3em;
+            }
+
+            .desc {
+
+            }
+        }
+    }
+}

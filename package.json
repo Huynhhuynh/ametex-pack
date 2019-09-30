@@ -1,0 +1,14 @@
+{
+  "name": "ametex-pack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass src/main.scss:dist/ametex-pack.css --style compressed --watch",
+    "start": "npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

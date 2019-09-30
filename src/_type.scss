@@ -1,0 +1,15 @@
+html, body {
+    font-family: var(--apack-font-body-text);
+    font-weight: var(--apack-font-body-text-weight);
+
+    h1, h2, h3, h4, h5, h6,
+    .apack-heading {
+        font-family: var(--apack-font-primary-headline);
+        font-weight: var(--apack-font-primary-headline-weight);
+    }
+
+    a {
+        font-family: var(--apack-font-accent-text);
+        font-weight: var(--apack-font-accent-text-weight);
+    }
+}
