@@ -22,10 +22,8 @@
 
         var self = this;
 
-        var _calc_pos = function( elem, mouseX, mouseY ) {
+        var _calc_pos = function( mouseX, mouseY ) {
             return {
-                // x: Math.floor( mouseX - (elem.offset().left + (elem.innerWidth() / 2)) ),
-                // y: Math.floor( mouseY - (elem.offset().top + (elem.innerHeight() / 2)) ),
                 x: Math.floor( mouseX - ($el.offset().left + ($el.innerWidth() / 2)) ),
                 y: Math.floor( mouseY - ($el.offset().top + ($el.innerHeight() / 2)) ),
             }
@@ -34,7 +32,7 @@
         $el.find( this.params.target ).on( {
             'animate' ( e, mouseX, mouseY ) {
                 var item = $( this );
-                var mouse_pos = _calc_pos( item, mouseX, mouseY );
+                var mouse_pos = _calc_pos( mouseX, mouseY );
 
                 item.css( {
                     'transform': `translate(${mouse_pos.x * self.params.radio}px, ${mouse_pos.y * self.params.radio}px)`,
@@ -46,7 +44,7 @@
 
         $el.on( {
             'mousemove' (e) {
-                $el.find( self.params.target ).trigger( 'animate', [e.clientX, e.clientY] );
+                $el.find( self.params.target ).trigger( 'animate', [e.pageX, e.pageY] );
             },
             'mouseout' (e) {
                 $el.find( self.params.target ).css( {
@@ -73,13 +71,13 @@
      * DOM Ready
      */
     $( function() {
-        apply_mouse_hover_float_effect();
+
     } )
 
     /**
      * Browser load completed
      */
     $( w ).on( 'load', function() {
-
+        apply_mouse_hover_float_effect();
     } )
 } )( window, jQuery )

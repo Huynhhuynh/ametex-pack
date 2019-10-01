@@ -121,7 +121,21 @@ add_action( 'setup_theme', function() {
             'active' => true,
             'path_file' => __DIR__ . '/elementor-widget/apack-elementor-featured-box.php',
             'scss_file' => APACK_DIR . '/src/elements/_featured-box.scss',
-        ]
+        ],
+        'apack_elementor_video' => [
+            'label' => __( 'Video', 'ametex-pack' ),
+            'description' => __( 'Widget display video youtube, vimeo, video html5.', 'ametex-pack' ),
+            'active' => true,
+            'path_file' => __DIR__ . '/elementor-widget/apack-elementor-video.php',
+            'scss_file' => APACK_DIR . '/src/elements/_video.scss',
+        ],
+        'apack_elementor_pricing_table' => [
+            'label' => __( 'Pricing Table', 'ametex-pack' ),
+            'description' => __( 'Present information about your prices and products in a format that’s easy to digest.', 'ametex-pack' ),
+            'active' => false,
+            'path_file' => __DIR__ . '/elementor-widget/apack-elementor-pricing-table.php',
+            'scss_file' => APACK_DIR . '/src/elements/_pricing-table.scss',
+        ],
     ];
 
     $apack_elementor_widgets = $widgets;

@@ -20,6 +20,9 @@ if( ! function_exists( 'apack_general_options' ) ) {
                 Field::make( 'checkbox', 'apack_dev_mode', __( 'Develop Mode', 'ametex-pack' ) )
                     ->set_default_value( false )
                     ->set_help_text( __( 'Enable develop mode auto rendering scss general and elementor widget style!' ) ),
+                Field::make( 'checkbox', 'apack_load_js_fancybox_3', __( 'Load library Fancybox version 3.', 'ametex-pack' ) )
+                    ->set_default_value( true )
+                    ->set_help_text( __( 'jQuery lightbox script for displaying images, videos and more. Touch enabled, responsive and fully customizable.!' ) ),
                 ] ) )
             ->add_tab( __( 'Social Settings', 'ametex-pack' ), apply_filters( 'apack/options/tab_social_settings', [
                 Field::make( 'text', 'apack_social_facebook', __( 'Facebook URL', 'amatex-pack' ) ),
