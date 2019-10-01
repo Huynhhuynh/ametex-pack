@@ -25,26 +25,24 @@ Elementor add-on for Ametex Theme
 
 ## Register Widget Hook
 ```php
-# use hook: apack/elementor_register_widgets
-
 /**
  * Exam: Register Posts Slide Widget
  *
  */
-function register_posts_slide_widget( $widgets ) {
-    array_push( $widgets, [
-        'apack_elementor_posts_slide' => [
-            'label' => __( 'Posts Slide', 'ametex-pack' ),
-            'description' => __( 'Widget display posts slide.', 'ametex-pack' ),
-            'active' => true, // autoload
-            'path_file' => __DIR__ . '/apack-elementor-posts-slide.php',
-        ],
-        ] );
+function register_posts_slide_widget() {
+    global $apack_elementor_widgets;
 
-    return $widgets;
+    $apack_elementor_widgets['apack_elementor_posts_slide'] = [
+        'label' => __( 'Posts Slide', 'ametex-pack' ),
+        'description' => __( 'Widget display posts slide.', 'ametex-pack' ),
+        'icon' => '', // update late...
+        'active' => true, // autoload
+        'path_file' => __DIR__ . '/apack-elementor-posts-slide.php',
+        'scss_file' => __DIR__ . '/apack-elementor-posts-slide.scss', // Need enable develop mode on general settings
+    ];
 }
 
-add_filter( 'apack/elementor_register_widgets', 'register_posts_slide_widget' );
+add_action( 'setup_theme', 'register_posts_slide_widget' );
 
 /**
  * file: apack-elementor-posts-slide.php

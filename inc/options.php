@@ -17,7 +17,9 @@ if( ! function_exists( 'apack_general_options' ) ) {
         $options = Container::make( 'theme_options', __( 'Ametex Pack Options', 'ametex-pack' ) )
             ->set_page_parent( 'themes.php' )
             ->add_tab( __( 'General', 'ametex-pack' ), apply_filters( 'apack/options/tab_general_settings', [
-
+                Field::make( 'checkbox', 'apack_dev_mode', __( 'Develop Mode', 'ametex-pack' ) )
+                    ->set_default_value( false )
+                    ->set_help_text( __( 'Enable develop mode auto rendering scss general and elementor widget style!' ) ),
                 ] ) )
             ->add_tab( __( 'Social Settings', 'ametex-pack' ), apply_filters( 'apack/options/tab_social_settings', [
                 Field::make( 'text', 'apack_social_facebook', __( 'Facebook URL', 'amatex-pack' ) ),

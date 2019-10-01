@@ -72,3 +72,25 @@ if( ! function_exists( 'apack_elementor_scheme_variables' ) ) {
 
     add_action( 'wp_head', 'apack_elementor_scheme_variables', 6 );
 }
+
+if( ! function_exists( 'apack_scss_rendering' ) ) {
+    /**
+     * Scss rendering
+     *
+     * @return void
+     */
+    function apack_scss_rendering() {
+        $dev_mode = carbon_get_theme_option( 'apack_dev_mode' );
+        if( true != $dev_mode ) return;
+
+        apack_scss_compiler(
+            file_get_contents( APACK_DIR . '/src/main.scss' ),
+            APACK_DIR . '/dist/ametex-pack.css',
+            APACK_DIR . '/src/',
+            'ScssPhp\ScssPhp\Formatter\Compressed',
+            true
+        );
+    }
+
+    add_action( 'init', 'apack_scss_rendering', 30 );
+}
