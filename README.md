@@ -93,4 +93,5 @@ class Apack_Elementor_Posts_Slide extends Widget_Base {
 
 ```
 
+## Control widget on setting panel
 ![Settings Preview](https://cdn-std.droplr.net/files/acc_472041/v7xIuE)
