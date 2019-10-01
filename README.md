@@ -1,80 +1,7 @@
-# ametex-pack
+## Ametex Pack
 Elementor add-on for Ametex Theme
 
-#### Register Widget Hook
-```php
-# apack/elementor_register_widgets hook
-
-/**
- * Exam: Register Posts Slide Widget
- *
- */
-function register_posts_slide_widget( $widgets ) {
-    array_push( $widgets, [
-        'apack_elementor_posts_slide' => [
-            'label' => __( 'Posts Slide', 'ametex-pack' ),
-            'description' => __( 'Widget display posts slide.', 'ametex-pack' ),
-            'active' => true, // autoload
-            'path_file' => __DIR__ . '/apack-elementor-posts-slide.php',
-        ],
-        ] );
-
-    return $widgets;
-}
-add_action( 'apack/elementor_register_widgets', 'register_posts_slide_widget' );
-
-/**
- * file: apack-elementor-posts-slide.php
- */
- <?php
- namespace Apack_Elementer\Widgets;
-
- use Elementor\Widget_Base;
- use Elementor\Controls_Manager;
-
- /**
-  * Elementor Featured Box Widget
-  *
-  */
-
- class Apack_Elementor_Posts_Slide extends Widget_Base {
-
-     public function get_name() {
-         return basename( __FILE__, '.php' );
-     }
-
-     public function get_title() {
-         return __( 'Posts Slide', 'ametex-pack' );
-     }
-
-     public function get_icon() {
-
-     }
-
-     public function get_categories() {
- 		return [ 'general' ];
- 	}
-
-     protected function _register_controls() {
-
-     }
-
-     protected function render() {
-
-     }
-
-     protected function _content_template() {
-
-     }
- }
-
- \Elementor\Plugin::instance()
-     ->widgets_manager
-     ->register_widget_type( new Apack_Elementor_Posts_Slide() );
-
-```
-
-#### Synchronized schemes elementor (color, typo)
+## Synchronized schemes elementor (color, typo)
 [watch video](https://d.pr/free/v/7UK6qi)
 ```css
 /**
@@ -95,3 +22,77 @@ add_action( 'apack/elementor_register_widgets', 'register_posts_slide_widget' );
     --apack-font-accent-text-weight: 400;
  }
 ```
+
+## Register Widget Hook
+```php
+# use hook: apack/elementor_register_widgets
+
+/**
+ * Exam: Register Posts Slide Widget
+ *
+ */
+function register_posts_slide_widget( $widgets ) {
+    array_push( $widgets, [
+        'apack_elementor_posts_slide' => [
+            'label' => __( 'Posts Slide', 'ametex-pack' ),
+            'description' => __( 'Widget display posts slide.', 'ametex-pack' ),
+            'active' => true, // autoload
+            'path_file' => __DIR__ . '/apack-elementor-posts-slide.php',
+        ],
+        ] );
+
+    return $widgets;
+}
+
+add_filter( 'apack/elementor_register_widgets', 'register_posts_slide_widget' );
+
+/**
+ * file: apack-elementor-posts-slide.php
+ */
+<?php
+use Elementor\Widget_Base;
+use Elementor\Controls_Manager;
+
+/**
+* Elementor Featured Box Widget
+*
+*/
+
+class Apack_Elementor_Posts_Slide extends Widget_Base {
+
+    public function get_name() {
+        return basename( __FILE__, '.php' );
+    }
+
+    public function get_title() {
+        return __( 'Posts Slide', 'ametex-pack' );
+    }
+
+    public function get_icon() {
+
+    }
+
+    public function get_categories() {
+    	return [ 'general' ];
+    }
+
+    protected function _register_controls() {
+
+    }
+
+    protected function render() {
+
+    }
+
+    protected function _content_template() {
+
+    }
+}
+
+\Elementor\Plugin::instance()
+    ->widgets_manager
+    ->register_widget_type( new Apack_Elementor_Posts_Slide() );
+
+```
+
+![Settings Preview](https://cdn-std.droplr.net/files/acc_472041/v7xIuE)

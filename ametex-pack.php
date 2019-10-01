@@ -46,7 +46,7 @@ if( ! function_exists('apack_plugin_links') ) {
     function apack_plugin_links( $links ) {
 
         $plugin_links = array(
-            '<a href="#">' . __( 'Settings', 'ametex-pack' ) . '</a>',
+            '<a href="'. admin_url( 'themes.php?page=crb_carbon_fields_container_ametex_pack_options.php' ) .'">' . __( 'Settings', 'ametex-pack' ) . '</a>',
             '<a href="#">' . __( 'Docs', 'ametex-pack' ) . '</a>',
         );
 
