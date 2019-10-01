@@ -8,9 +8,6 @@ if( ! function_exists( 'apack_scripts' ) ) {
      * Enqueue scripts
      */
     function apack_scripts() {
-
-        wp_enqueue_script( 'ametex-pack-custom-elementor', APACK_URI . '/dist/ametex-pack.custom-elementor.js', ['jquery'], APACK_VER, true );
-
         wp_enqueue_style( 'ametex-pack-css', APACK_URI . '/dist/ametex-pack.css', false, APACK_VER );
         wp_enqueue_script( 'ametex-pack-js', APACK_URI . '/dist/ametex-pack.js', ['jquery'], APACK_VER, true );
         wp_localize_script( 'ametex-pack-js', 'apack_php_object', apply_filters( 'apack/apack_php_object', [

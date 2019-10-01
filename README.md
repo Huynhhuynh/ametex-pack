@@ -8,18 +8,18 @@ Elementor add-on for Ametex Theme
  * Css variables using
  */
  :root {
-    --apack-color-primary: #8dcfc8;
-    --apack-color-secondary: #565656;
-    --apack-color-text: #50656e;
-    --apack-color-accent: #dc5049;
-    --apack-font-primary-headline: 'Josefin Sans';
-    --apack-font-primary-headline-weight: 400;
-    --apack-font-secondary-headline: 'Josefin Sans';
-    --apack-font-secondary-headline-weight: 400;
-    --apack-font-body-text: 'Prata';
-    --apack-font-body-text-weight: 400;
-    --apack-font-accent-text: 'Josefin Sans';
-    --apack-font-accent-text-weight: 400;
+    --apack-color-primary: ...;
+    --apack-color-secondary: ...;
+    --apack-color-text: ...;
+    --apack-color-accent: ...;
+    --apack-font-primary-headline: ...;
+    --apack-font-primary-headline-weight: ...;
+    --apack-font-secondary-headline: ...;
+    --apack-font-secondary-headline-weight: ...;
+    --apack-font-body-text: ...;
+    --apack-font-body-text-weight: ...;
+    --apack-font-accent-text: ...;
+    --apack-font-accent-text-weight: ...;
  }
 ```
 
@@ -33,12 +33,12 @@ function register_posts_slide_widget() {
     global $apack_elementor_widgets;
 
     $apack_elementor_widgets['apack_elementor_posts_slide'] = [
-        'label' => __( 'Posts Slide', 'ametex-pack' ),
-        'description' => __( 'Widget display posts slide.', 'ametex-pack' ),
-        'icon' => '', // update late...
-        'active' => true, // autoload
-        'path_file' => __DIR__ . '/apack-elementor-posts-slide.php',
-        'scss_file' => __DIR__ . '/apack-elementor-posts-slide.scss', // Need enable develop mode on general settings
+        'label' => __( 'Posts Slide', 'ametex-pack' ), // (require)
+        'description' => __( 'Widget display posts slide.', 'ametex-pack' ), // (options)
+        'icon' => '', // update late... (options)
+        'active' => true, // autoload (options)
+        'path_file' => __DIR__ . '/apack-elementor-posts-slide.php', // (require)
+        'scss_file' => __DIR__ . '/apack-elementor-posts-slide.scss', // Need enable develop mode on general settings (option)
     ];
 }
 

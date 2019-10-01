@@ -55,6 +55,11 @@ class Apack_Elementor {
         wp_enqueue_style( 'ametex-pack-elementor', APACK_URI . '/dist/ametex-pack.elementor.css', false, APACK_VER );
     }
 
+    public function editor_enqueue_scripts() {
+        if ( \Elementor\Plugin::$instance->preview->is_preview_mode() )
+            wp_enqueue_script( 'ametex-pack-custom-elementor', APACK_URI . '/dist/ametex-pack.custom-elementor.js', ['jquery'], APACK_VER, true );
+    }
+
     public function load_widget_options( $options ) {
         $register_widgets = $this->get_widgets();
 
@@ -91,6 +96,9 @@ class Apack_Elementor {
 
         // Scss rendering
         add_action( 'init', [ $this, 'style_rendering' ] );
+
+        // Editor enqueue scripts
+        add_action( 'wp_enqueue_scripts', [ $this, 'editor_enqueue_scripts' ] );
 
         // Enqueue scripts
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
