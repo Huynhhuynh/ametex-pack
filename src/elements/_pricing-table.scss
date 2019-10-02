@@ -27,13 +27,14 @@
             -webkit-transition: .3s ease;
 
             .heading {
-                padding: 30px;
+                padding: 40px 30px;
                 text-align: center;
                 border-bottom: solid 1px #eee;
 
                 .pricing {
                     font-size: 3em;
                     line-height: normal;
+                    font-weight: 400;
                 }
 
                 .plan {
@@ -49,7 +50,7 @@
             }
 
             .entry {
-                padding: 30px;
+                padding: 40px 30px;
                 margin-bottom: 80px;
 
                 ul {
@@ -102,11 +103,11 @@
                     padding: 10px;
                     border: solid 1px #eee;
                     text-align: center;
-                    color: var(--apack-color-primary);
+                    color: var(--apack-color-accent);
 
                     &:hover {
-                        background: var(--apack-color-primary);
-                        border-color: var(--apack-color-primary);
+                        background: var(--apack-color-accent);
+                        border-color: var(--apack-color-accent);
                         color: #FFF;
                     }
                 }
@@ -122,7 +123,7 @@
                 }
 
                 > * {
-                    
+
                     &:last-child {
 
                         .__item {
