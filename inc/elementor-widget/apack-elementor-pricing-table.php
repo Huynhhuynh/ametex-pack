@@ -79,7 +79,8 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
 				'label' => __( 'Color', 'ametex-pack' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-                    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}}' => 'border-top-color: {{VALUE}}',
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .heading .pricing' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -114,7 +115,6 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
                         'list_content' => $content_default,
                         'list_color' => '',
                         'list_button_title' => 'Choose Plan',
-                        'list_button_link' => '#',
                     ],
                     [
                         'list_plan_name' => 'Medium Pack',
@@ -122,7 +122,6 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
                         'list_content' => $content_default,
                         'list_color' => '',
                         'list_button_title' => 'Choose Plan',
-                        'list_button_link' => '#',
                     ],
                     [
                         'list_plan_name' => 'Premium Pack',
@@ -130,10 +129,56 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
                         'list_content' => $content_default,
                         'list_color' => '',
                         'list_button_title' => 'Choose Plan',
-                        'list_button_link' => '#',
                     ]
                 ],
                 'title_field' => '{{{list_plan_name}}}'
+            ]
+        );
+
+        $this->add_control(
+            'item_margin',
+            [
+                'label' => __( 'Margin', 'ametex-pack' ),
+                'type' => Controls_Manager::NUMBER,
+                'default' => 20,
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+			'section_responsive',
+			[
+				'label' => __( 'Responsive', 'ametex-pack' ),
+			]
+		);
+
+        $this->add_control(
+            'item_desktop',
+            [
+                'label' => __( 'Items on Desktop', 'ametex-pack' ),
+                'type' => Controls_Manager::NUMBER,
+                'default' => 3,
+            ]
+        );
+
+        $this->add_control(
+            'item_tablet',
+            [
+                'label' => __( 'Items on Tablet', 'ametex-pack' ),
+                'type' => Controls_Manager::NUMBER,
+                'default' => 2,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'item_mobile',
+            [
+                'label' => __( 'Items on Mobile', 'ametex-pack' ),
+                'type' => Controls_Manager::NUMBER,
+                'default' => 1,
+                'separator' => 'before',
             ]
         );
 
@@ -147,9 +192,14 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
         ?>
         <div class="apack-widget __e-pricing-table">
             <div class="__e-pricing-table__inner">
-                <div class="pricing-items">
+                <div class="pricing-items __is-margin-<?php echo $settings['item_margin']; ?>"
+                    data-apack-carousel
+                    data-owl-margin="<?php echo $settings['item_margin']; ?>"
+                    data-owl-items="<?php echo $settings['item_desktop']; ?>"
+                    data-owl-items-tablet="<?php echo $settings['item_tablet']; ?>"
+                    data-owl-items-mobile="<?php echo $settings['item_mobile']; ?>" >
                     <?php foreach( $settings['list'] as $index => $item ) : ?>
-                    <div class="__item">
+                    <div class="__item <?php echo 'elementor-repeater-item-' . $item['_id']; ?>">
                         <div class="heading">
                             <h4 class="pricing"><?php echo $item['list_price']; ?></h4>
                             <div class="plan">
@@ -160,7 +210,9 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
                             <?php echo wpautop( $item['list_content'] ); ?>
                         </div>
                         <div class="action">
-                            <a class="button-choose-plan" href="">
+                            <a class="button-choose-plan"
+                                href="<?php echo $item['list_button_link']['url'] ?>"
+                                <?php echo ( $item['list_button_link']['is_external'] == true ) ? 'target="_blank"' : ''; ?> >
                                 <?php echo $item['list_button_title'] ?>
                             </a>
                         </div>
@@ -177,7 +229,31 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
         <# if ( settings.list.length ) { #>
         <div class="apack-widget __e-pricing-table">
             <div class="__e-pricing-table__inner">
-
+                <div class="pricing-items"
+                    data-apack-carousel
+                    data-owl-margin="{{ settings.item_margin }}"
+                    data-owl-items="{{ settings.item_desktop }}"
+                    data-owl-items-tablet="{{ settings.item_tablet }}"
+                    data-owl-items-mobile="{{ settings.item_mobile }}" >
+                    <# _.each( settings.list, function( item ) { #>
+                    <div class="__item elementor-repeater-item-{{ item._id }}">
+                        <div class="heading">
+                            <h4 class="pricing">{{ item.list_price }}</h4>
+                            <div class="plan">
+                                {{ item.list_plan_name }}
+                            </div>
+                        </div>
+                        <div class="entry">
+                            {{{ item.list_content }}}
+                        </div>
+                        <div class="action">
+                            <a class="button-choose-plan" href="{{ item.list_button_link.url }}">
+                                {{ item.list_button_title }}
+                            </a>
+                        </div>
+                    </div>
+                    <# } ) #>
+                </div>
             </div>
         </div>
         <# } #>

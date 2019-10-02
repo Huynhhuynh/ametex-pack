@@ -47,11 +47,18 @@
         on_change_schemes();
     }
 
+    var elementor_frontend_init = function() {
+        w.elementorFrontend.hooks.addAction( 'frontend/element_ready/apack-elementor-pricing-table.default', function( $scope, $ ) {
+            // console.log( $scope );
+            // w.apack.apply_carousel();
+            w.apack.owlcarousel( $scope.find( '[data-apack-carousel]' ) );
+        } )
+    }
+
     $( w ).on( 'load', function() {
         setTimeout( function() {
             elementor_hooks();
+            elementor_frontend_init();
         }, 1 )
     } )
-
-
 } )( window, jQuery )

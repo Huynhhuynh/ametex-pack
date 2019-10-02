@@ -23,6 +23,9 @@ if( ! function_exists( 'apack_general_options' ) ) {
                 Field::make( 'checkbox', 'apack_load_js_fancybox_3', __( 'Load library Fancybox version 3.', 'ametex-pack' ) )
                     ->set_default_value( true )
                     ->set_help_text( __( 'jQuery lightbox script for displaying images, videos and more. Touch enabled, responsive and fully customizable.!' ) ),
+                Field::make( 'checkbox', 'apack_load_js_owlcarousel_2', __( 'Load library OwlCarousel version 2.', 'ametex-pack' ) )
+                    ->set_default_value( true )
+                    ->set_help_text( __( 'Touch enabled jQuery plugin that lets you create a beautiful responsive carousel slider.!' ) ),
                 ] ) )
             ->add_tab( __( 'Social Settings', 'ametex-pack' ), apply_filters( 'apack/options/tab_social_settings', [
                 Field::make( 'text', 'apack_social_facebook', __( 'Facebook URL', 'amatex-pack' ) ),

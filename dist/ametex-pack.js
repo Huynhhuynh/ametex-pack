@@ -14,7 +14,7 @@
         },
     };
 
-    var mouse_hover_float_effect = function( $el, params ) {
+    w.apack.mouse_hover_float_effect = function( $el, params ) {
         this.params = $.extend( {
             target: '.float-item',
             radio: .1,
@@ -56,15 +56,80 @@
         } )
     }
 
-    var apply_mouse_hover_float_effect = function() {
+    w.apack.apply_mouse_hover_float_effect = function() {
         var elem = $( '[data-apack-hover-float-effect]' );
 
         elem.each( function() {
-            new mouse_hover_float_effect( $( this ), {
+            new w.apack.mouse_hover_float_effect( $( this ), {
                 target: '[data-float-item]',
             } )
         } )
 
+    }
+
+    w.apack.owlcarousel = function( elem, opts ) {
+        elem.addClass( 'owl-carousel owl-theme' );
+
+        var args = $.extend( {
+            items: 3,
+            loop: false,
+            margin: 20,
+            nav: false,
+            dots: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                480: {
+                    items: 2,
+                },
+                768: {
+                    items: 3,
+                }
+            }
+        }, opts );
+
+        if( typeof elem.data( 'owl-dots' ) != 'undefined' ) {
+            args.dots = parseInt( elem.data( 'owl-dots' ) );
+        }
+
+        if( typeof elem.data( 'owl-nav' ) != 'undefined' ) {
+            args.nav = parseInt( elem.data( 'owl-nav' ) );
+        }
+
+        if( typeof elem.data( 'owl-margin' ) != 'undefined' ) {
+            args.margin = parseInt( elem.data( 'owl-margin' ) );
+        }
+
+        if( typeof elem.data( 'owl-loop' ) != 'undefined' ) {
+            args.loop = parseInt( elem.data( 'owl-loop' ) );
+        }
+
+        if( typeof elem.data( 'owl-items' ) != 'undefined' ) {
+            args.items = parseInt( elem.data( 'owl-items' ) );
+            args.responsive[768].items = parseInt( elem.data( 'owl-items' ) );
+        }
+
+        if( typeof elem.data( 'owl-items-tablet' ) != 'undefined' ) {
+            args.responsive[480].items = parseInt( elem.data( 'owl-items-tablet' ) );
+        }
+
+        if( typeof elem.data( 'owl-items-mobile' ) != 'undefined' ) {
+            args.responsive[0].items = parseInt( elem.data( 'owl-items-mobile' ) );
+        }
+
+        return elem.owlCarousel( args );
+    }
+
+    w.apack.apply_carousel = function() {
+        var elem = $( '[data-apack-carousel]' );
+
+        elem.each( function() {
+            var self = $( this );
+            if( self.data( 'apack-apply-carousel' ) == true ) return;
+            var owl = w.apack.owlcarousel( self );
+            self.data( 'apack-apply-carousel', true );
+        } )
     }
 
     /**
@@ -78,6 +143,7 @@
      * Browser load completed
      */
     $( w ).on( 'load', function() {
-        apply_mouse_hover_float_effect();
+        w.apack.apply_mouse_hover_float_effect();
+        w.apack.apply_carousel();
     } )
 } )( window, jQuery )
