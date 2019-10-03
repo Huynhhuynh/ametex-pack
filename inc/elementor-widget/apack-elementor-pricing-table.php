@@ -229,7 +229,7 @@ class Apack_Elementor_Pricing_Table extends Widget_Base {
         <# if ( settings.list.length ) { #>
         <div class="apack-widget __e-pricing-table">
             <div class="__e-pricing-table__inner">
-                <div class="pricing-items"
+                <div class="pricing-items __is-margin-{{ settings.item_margin }}"
                     data-apack-carousel
                     data-owl-margin="{{ settings.item_margin }}"
                     data-owl-items="{{ settings.item_desktop }}"
