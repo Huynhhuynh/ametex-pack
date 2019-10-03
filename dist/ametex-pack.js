@@ -132,6 +132,27 @@
         } )
     }
 
+    w.apack.apply_lazyload = function() {
+        var elem = $( '[data-apack-image-lazy]' );
+
+        $.each( elem, function() {
+            var image = $( this );
+            var image_final_src = image.data( 'image-final' );
+
+            image
+                .removeAttr( 'srcset' )
+                .removeAttr( 'sizes' )
+                .removeAttr( 'data-apack-image-lazy' )
+                .removeAttr( 'data-image-final' );
+
+            var image_shadow = new Image();
+            image_shadow.onload = function() {
+                image.attr( 'src', image_final_src );
+            }
+            image_shadow.src = image_final_src;
+        } )
+    }
+
     /**
      * DOM Ready
      */
@@ -145,5 +166,6 @@
     $( w ).on( 'load', function() {
         w.apack.apply_mouse_hover_float_effect();
         w.apack.apply_carousel();
+        w.apack.apply_lazyload();
     } )
 } )( window, jQuery )

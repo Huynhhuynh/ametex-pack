@@ -29,7 +29,7 @@ class Apack_Elementor {
     }
 
     public static function style_rendering() {
-        $dev_mode = carbon_get_theme_option( 'apack_dev_mode' );
+        $dev_mode = $dev_mode = apack_get_mode();
         if( true != $dev_mode ) return;
 
         $register_widgets = $this->get_widgets();

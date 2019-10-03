@@ -22,6 +22,9 @@ if( ! function_exists( 'apack_scripts' ) ) {
             wp_enqueue_script( 'owlcarousel', APACK_URI . '/dist/owlcarousel/owl.carousel.min.js', ['jquery'], '2.3.4', true );
         }
 
+        wp_enqueue_script( 'isotope', APACK_URI . '/dist/isotope/isotope.pkgd.min.js', false, '3.0.6', true );
+        wp_enqueue_script( 'begrid', APACK_URI . '/dist/begrid/begrid.min.js', ['jquery', 'isotope'], 1, true );
+
         wp_enqueue_style( 'ametex-pack-css', APACK_URI . '/dist/ametex-pack.css', false, APACK_VER );
         wp_enqueue_script( 'ametex-pack-js', APACK_URI . '/dist/ametex-pack.js', ['jquery'], APACK_VER, true );
         wp_localize_script( 'ametex-pack-js', 'apack_php_object', apply_filters( 'apack/apack_php_object', [
@@ -78,7 +81,6 @@ if( ! function_exists( 'apack_elementor_scheme_variables' ) ) {
             }
         </style>
         <?php
-
     }
 
     add_action( 'wp_head', 'apack_elementor_scheme_variables', 6 );
@@ -91,7 +93,7 @@ if( ! function_exists( 'apack_scss_rendering' ) ) {
      * @return void
      */
     function apack_scss_rendering() {
-        $dev_mode = carbon_get_theme_option( 'apack_dev_mode' );
+        $dev_mode = apack_get_mode();
         if( true != $dev_mode ) return;
 
         apack_scss_compiler(
