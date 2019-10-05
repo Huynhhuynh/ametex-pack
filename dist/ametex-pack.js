@@ -153,11 +153,22 @@
         } )
     }
 
+    w.apack.sharing = function() {
+
+        $( 'body' ).on( 'click', '.apack-share-container a', function( e ) {
+            e.preventDefault();
+            var url = this.href;
+            var settings = 'location=yes,height=570,width=520,scrollbars=yes,status=yes';
+
+            w.open( url, '_blank', settings );
+        } )
+    }
+
     /**
      * DOM Ready
      */
     $( function() {
-
+        w.apack.sharing();
     } )
 
     /**

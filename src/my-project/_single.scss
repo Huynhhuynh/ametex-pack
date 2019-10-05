@@ -115,6 +115,38 @@ article.myproject-summary {
                     }
                 }
             }
+
+            .share {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                line-height: normal;
+                border-top: solid 1px #eee;
+                margin-top: 20px;
+                padding-top: 20px;
+                font-size: .9em;
+
+                .text {
+                    margin-right: 10px;
+                }
+
+                .apack-share-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    margin: 0;
+                    padding: 0;
+
+                    .s-item {
+                        list-style: none;
+                        width: 28px;
+
+                        &:not(:last-child) {
+                            margin-right: 8px;
+                        }
+                    }
+                }
+            }
         }
 
         .__media {

@@ -164,6 +164,9 @@ class Apack_My_Project {
         $settings->add_tab( __( 'Project Settings', 'ametex-pack' ), apply_filters( 'apack/options/tab_project_settings', [
             Field::make( 'checkbox', 'apack_project_enable', __( 'Enable Projects post type', 'ametex-pack' ) )
                 ->set_help_text( __( 'Display your company or personal Portfolio/Gallery items', 'ametex-pack' ) ),
+            Field::make( 'text', 'apack_myproject_content_width', __( 'Content With', 'ametex-pack' ) )
+                ->set_attribute( 'type', 'number' )
+                ->set_default_value( 1140 ),
             Field::make( 'text', 'apack_myproject_archive_heading_title', __( 'Archive Title', 'ametex-pack' ) )
                 ->set_default_value( __( 'Visiting Our Projects', 'ametex-pack' ) ),
             Field::make( 'textarea', 'apack_myproject_archive_heading_desc', __( 'Archive Decriptions', 'ametex-pack' ) )
@@ -212,7 +215,7 @@ class Apack_My_Project {
         ?>
         <style>
             :root {
-                --apack-myproject-content-width: 1140px;
+                --apack-myproject-content-width: <?php echo carbon_get_theme_option( 'apack_myproject_content_width' ); ?>px;
                 --apack-myproject-archive-cols: <?php echo carbon_get_theme_option( 'apack_project_archive_grid_cols' ); ?>;
                 --apack-myproject-archive-cols-tablet: <?php echo carbon_get_theme_option( 'apack_project_archive_grid_cols_tablet' ); ?>;
                 --apack-myproject-archive-cols-mobile: <?php echo carbon_get_theme_option( 'apack_project_archive_grid_cols_mobile' ); ?>;

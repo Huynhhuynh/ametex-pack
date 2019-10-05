@@ -5,6 +5,9 @@
  */
 ?>
 <?php get_header(); ?>
+
+    <?php do_action( 'apack/my_project/single_before' ); ?>
+
 	<div class="my-project-main">
         <div class="my-project-container-width">
             <div class="my-project-main__inner">
@@ -18,4 +21,7 @@
             </div>
         </div>
     </div>
+
+    <?php do_action( 'apack/my_project/single_after' ); ?>
+
 <?php get_footer(); ?>
