@@ -26,23 +26,19 @@ Elementor add-on for Ametex Theme
 ## Register Widget Hook
 ```php
 /**
- * Exam: Register Posts Slide Widget
+ * file: your_theme/functions.php
  *
  */
-function register_posts_slide_widget() {
-    global $apack_elementor_widgets;
+ global $apack_elementor_widgets;
 
-    $apack_elementor_widgets['apack_elementor_posts_slide'] = [
-        'label' => __( 'Posts Slide', 'ametex-pack' ), // (require)
-        'description' => __( 'Widget display posts slide.', 'ametex-pack' ), // (options)
-        'icon' => '', // update late... (options)
-        'active' => true, // autoload (options)
-        'path_file' => __DIR__ . '/apack-elementor-posts-slide.php', // (require)
-        'scss_file' => __DIR__ . '/apack-elementor-posts-slide.scss', // Need enable develop mode on general settings (option)
-    ];
-}
-
-add_action( 'setup_theme', 'register_posts_slide_widget' );
+ $apack_elementor_widgets['apack_elementor_posts_slide'] = [
+     'label' => __( 'Posts Slide', 'ametex-pack' ), // (require)
+     'description' => __( 'Widget display posts slide.', 'ametex-pack' ), // (options)
+     'icon' => '', // update late... (options)
+     'active' => true, // autoload (options)
+     'path_file' => __DIR__ . '/apack-elementor-posts-slide.php', // (require)
+     'scss_file' => __DIR__ . '/apack-elementor-posts-slide.scss', // Need enable develop mode on general settings (option)
+ ];
 
 /**
  * file: apack-elementor-posts-slide.php

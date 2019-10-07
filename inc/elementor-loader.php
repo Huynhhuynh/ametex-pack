@@ -139,7 +139,7 @@ add_action( 'setup_theme', function() {
     ];
 
     $apack_elementor_widgets = $widgets;
-}, 19 );
+} );
 
 add_action( 'setup_theme', function() {
     if( defined( 'ELEMENTOR_VERSION' ) ) {
