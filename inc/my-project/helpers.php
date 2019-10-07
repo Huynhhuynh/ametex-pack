@@ -136,7 +136,7 @@ if( ! function_exists( 'apack_myproject_single_nav' ) ) {
                 </a>
             <?php endif; ?>
 
-            <a class="archive-nav" href="">
+            <a class="archive-nav" href="<?php echo get_post_type_archive_link( 'my-project' ); ?>">
                 <span class="__icon">
                     <?php echo apack_svg_icon( 'menu_square' ); ?>
                 </span>
