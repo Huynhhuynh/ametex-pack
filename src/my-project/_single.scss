@@ -162,3 +162,61 @@ article.myproject-summary {
         }
     }
 }
+
+.myproject-single-nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: normal;
+    padding: 10px 0;
+    border: solid #eee;
+    border-width: 1px 0;
+    margin-top: 45px;
+
+    > a {
+        width: calc(100% / 3);
+    }
+
+    .archive-nav {
+        text-align: center;
+    }
+
+    .next-nav {
+        text-align: right;
+        flex-direction: row-reverse;
+    }
+
+    .archive-nav {
+
+        .__icon {
+            width: 28px;
+            display: inline-block;
+
+            svg {
+                width: 100%;
+            }
+        }
+    }
+
+    .next-nav,
+    .prev-nav{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .__icon {
+            display: inline-block;
+            width: 10px;
+            vertical-align: middle;
+
+            svg {
+                width: 100%;
+            }
+        }
+
+        .__title {
+            margin: 0 10px;
+            max-width: calc(100% - 30px);
+        }
+    }
+}

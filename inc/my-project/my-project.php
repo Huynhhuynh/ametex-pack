@@ -199,6 +199,10 @@ class Apack_My_Project {
                     ] )
                 ->set_default_value( '1' )
                 ->set_width( 30 ),
+            Field::make( 'checkbox', 'apack_project_single_post_nav', __( 'Single Post Nav', 'ametex-pack' ) )
+                ->set_default_value( true ),
+            Field::make( 'checkbox', 'apack_project_single_comment', __( 'Single Comment', 'ametex-pack' ) )
+                ->set_default_value( false ),
             ] ) );
     }
 

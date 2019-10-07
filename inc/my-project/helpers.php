@@ -106,3 +106,51 @@ if( ! function_exists( 'apack_myproject_increase_view_post' ) ) {
         update_post_meta( $post->ID, '_post-views', $count + 1 );
     }
 }
+
+if( ! function_exists( 'apack_myproject_single_media' ) ) {
+    /**
+     *
+     */
+    function apack_myproject_single_media() {
+        global $post;
+        the_post_thumbnail( 'full' );
+    }
+}
+
+if( ! function_exists( 'apack_myproject_single_nav' ) ) {
+    /**
+     * Single Nav
+     */
+    function apack_myproject_single_nav() {
+        global $post;
+        $prev_post = get_previous_post();
+        $next_post = get_next_post();
+        ?>
+        <div class="myproject-single-nav-container">
+            <?php if( $prev_post ) : ?>
+                <a class="prev-nav" href="<?php echo get_the_permalink( $prev_post->ID ); ?>" rel="nofollow">
+                    <span class="__icon">
+                        <?php echo apack_svg_icon( 'prev_arrow' ); ?>
+                    </span>
+                    <span class="__title"><?php echo get_the_title( $prev_post->ID ); ?></span>
+                </a>
+            <?php endif; ?>
+
+            <a class="archive-nav" href="">
+                <span class="__icon">
+                    <?php echo apack_svg_icon( 'menu_square' ); ?>
+                </span>
+            </a>
+
+            <?php if( $next_post ) : ?>
+                <a class="next-nav" href="<?php echo get_the_permalink( $next_post->ID ); ?>" rel="nofollow">
+                    <span class="__icon">
+                        <?php echo apack_svg_icon( 'next_arrow' ); ?>
+                    </span>
+                    <span class="__title"><?php echo get_the_title( $next_post->ID ); ?></span>
+                </a>
+            <?php endif; ?>
+        </div>
+        <?php
+    }
+}

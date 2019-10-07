@@ -11,6 +11,9 @@ $views_icon = '<svg x="0px" y="0px" viewBox="0 0 488.85 488.85" style="enable-ba
 <article <?php post_class( 'myproject-summary' ); ?>>
     <div class="myproject-summary__inner">
         <div class="__entry">
+
+            <?php do_action( 'apack/my_project/entry_before' ); ?>
+
             <div class="heading">
                 <div class="avatar">
                     <?php echo get_avatar( $post->post_author, 100 ); ?>
@@ -45,9 +48,18 @@ $views_icon = '<svg x="0px" y="0px" viewBox="0 0 488.85 488.85" style="enable-ba
                 </span>
                 <?php apack_share_post(); ?>
             </div>
+
+            <?php do_action( 'apack/my_project/entry_after' ); ?>
         </div>
         <div class="__media">
-            <?php the_post_thumbnail( 'full' ); ?>
+            <?php
+            /**
+             * apack/my_project/entry_media hook.
+             *
+             * @see apack_myproject_single_media - 20
+             */
+            do_action( 'apack/my_project/entry_media' );
+            ?>
         </div>
     </div>
 </article>
