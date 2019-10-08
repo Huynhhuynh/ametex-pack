@@ -1,6 +1,19 @@
 ## Ametex Pack
 Elementor add-on for Ametex Theme
 
+## Featured
+    * Synchronized schemes elementor (color, typography)
+    * Control elementor widgets panel via hook
+    * Elementor widgets base (Featured box, Pricing table, etc.)
+    * Support project post type (archive & single)
+    * Settings panel hook
+    * Support SCSS develop mode
+    * Options control include OwlCarousel 2
+    * Options control include Fancybox 3
+    * ~~Custom single blog template~~
+    * ~~Support Gutenberg editor~~
+    * ~~Mobile menu friendly~~
+
 ## Synchronized schemes elementor (color, typo)
 [watch video](https://d.pr/free/v/7UK6qi)
 ```css
