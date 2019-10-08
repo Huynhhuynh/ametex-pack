@@ -10,9 +10,9 @@ Elementor add-on for Ametex Theme
     * Support SCSS develop mode
     * Options control include OwlCarousel 2
     * Options control include Fancybox 3
-    * ~~Custom single blog template~~
-    * ~~Support Gutenberg editor~~
-    * ~~Mobile menu friendly~~
+    * ~Custom single blog template~
+    * ~Support Gutenberg editor~
+    * ~Mobile menu friendly~
 
 ## Synchronized schemes elementor (color, typo)
 [watch video](https://d.pr/free/v/7UK6qi)
