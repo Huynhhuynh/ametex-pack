@@ -6,6 +6,10 @@
     background: #fafafa;
     padding-bottom: 3em;
 
+    input#wp-comment-cookies-consent {
+        margin: 4px 6px 0 0;
+    }
+
     .bt-comment-wrapper {
         width: var(--apack-blog-content-width);
         max-width: 100%;
