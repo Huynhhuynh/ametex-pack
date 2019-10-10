@@ -36,6 +36,7 @@ Text Domain: ametex-pack
     require( APACK_DIR . '/inc/options.php' );
     require( APACK_DIR . '/inc/elementor-loader.php' );
     require( APACK_DIR . '/inc/my-project/my-project.php' );
+    require( APACK_DIR . '/inc/blog/hooks.php' );
 }
 
 if( ! function_exists('apack_plugin_links') ) {

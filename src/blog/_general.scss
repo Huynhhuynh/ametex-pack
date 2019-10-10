@@ -1,0 +1,94 @@
+.apack-blog-container-width {
+    width: var(--apack-blog-content-width);
+    max-width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.apack-blog-heading-bar-container {
+    position: relative;
+    padding: 7vw 0 14vw;
+
+    .background-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: var(--apack-blog-background-layer) no-repeat center center / cover;
+        z-index: 1;
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1,1,1,.6);
+        }
+    }
+
+    .apack-blog-container-width {
+        position: relative;
+        z-index: 3;
+
+        .heading-entry {
+            text-align: center;
+            color: #FFF;
+
+            .bookmark-icon {
+                margin-bottom: 15px;
+
+                svg {
+                    width: 32px;
+                    fill: #FFF;
+                }
+            }
+
+            .in-cat {
+                margin-bottom: 10px;
+
+                a {
+                    color: #dedede;
+                    border-bottom: solid 2px;
+
+                    &:hover {
+                        color: var(--apack-color-accent);
+                    }
+                }
+            }
+
+            .title {
+                color: #FFF;
+                font-size: 3em;
+                line-height: normal;
+                width: 800px;
+                max-width: 100%;
+                margin: 27px auto;
+
+                @media(max-width: 767px) {
+                    font-size: 2em;
+                }
+
+                @media(max-width: 425px) {
+                    font-size: 1.8em;
+                }
+            }
+
+            .meta {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                color: #dedede;
+
+                > * {
+
+                    &:not(:last-child) {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

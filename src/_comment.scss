@@ -1,0 +1,52 @@
+.apack-comment-container {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 3em;
+    background: #fafafa;
+    padding-bottom: 3em;
+
+    .bt-comment-wrapper {
+        width: var(--apack-blog-content-width);
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    .bt-comment-item {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 30px 0;
+
+        .bt-avatar {
+            float: none;
+            padding: 0;
+            margin: 0;
+            margin-right: 20px;
+        }
+
+        .bt-comment {
+            padding: 0;
+            width: calc(100% - 80px);
+            margin: 0;
+            background: none;
+
+            .comment-reply-link {
+                float: right;
+            }
+
+            .bt-name {
+                color: #222;
+
+                .name {
+                    text-transform: inherit;
+                    margin-right: 6px;
+                }
+            }
+        }
+
+        .bt-comment-item {
+            margin-bottom: 0;
+        }
+    }
+}

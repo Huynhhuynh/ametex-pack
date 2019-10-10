@@ -220,3 +220,10 @@ article.myproject-summary {
         }
     }
 }
+
+.single-my-project {
+
+    .apack-comment-container .bt-comment-wrapper {
+        width: var(--apack-myproject-content-width);
+    }
+}
