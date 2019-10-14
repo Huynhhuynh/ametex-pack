@@ -45,7 +45,8 @@ if( ! function_exists( 'apack_make_variables_array' ) ) {
         $result = [];
         foreach( $data as $index => $item ) {
             $slug = implode( '-', [ 'apack-' . $type, str_replace( ' ', '-', strtolower( $item['title'] ) ) ] );
-            array_push( $result, [ "name" => "--{$slug}", "value" => $item['value'] ] );
+            $result[$slug] = [ "name" => "--{$slug}", "value" => $item['value'] ];
+            // array_push( $result, [ "name" => "--{$slug}", "value" => $item['value'] ] );
         }
 
         return apply_filters( 'apack/css_variables/' . $type, $result );
