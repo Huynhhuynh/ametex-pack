@@ -48,7 +48,7 @@ if( ! function_exists( 'apack_make_variables_array' ) ) {
             array_push( $result, [ "name" => "--{$slug}", "value" => $item['value'] ] );
         }
 
-        return $result;
+        return apply_filters( 'apack/css_variables/' . $type, $result );
     }
 }
 

@@ -56,6 +56,7 @@ use Carbon_Fields\Field;
     } );
 
     add_action( 'init', function() {
+        global $apack_elementor_widgets;
 
         $custom_blog = carbon_get_theme_option( 'apack_blog_custom_enable' );
         if( true != $custom_blog ) return;
@@ -69,6 +70,19 @@ use Carbon_Fields\Field;
         add_action( 'apack/blog/single_content', 'apack_blog_content', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_related', 24 );
         add_action( 'apack/blog/single_content', 'apack_comment_template', 28 );
+
+        /**
+         * Elementor widgets
+         *
+         */
+
+        $apack_elementor_widgets['apack_elementor_post_slide'] = [
+            'label' => __( 'Post Slide', 'ametex-pack' ),
+            'description' => __( '...', 'ametex-pack' ),
+            'active' => true,
+            'path_file' => APACK_DIR . '/inc/elementor-widget/apack-post-slide.php',
+            'scss_file' => APACK_DIR . '/src/elements/_post-slide.scss',
+        ];
 
         /**
          * Render Css

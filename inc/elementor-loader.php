@@ -135,7 +135,7 @@ add_action( 'setup_theme', function() {
             'active' => false,
             'path_file' => __DIR__ . '/elementor-widget/apack-elementor-pricing-table.php',
             'scss_file' => APACK_DIR . '/src/elements/_pricing-table.scss',
-        ],
+        ]
     ];
 
     $apack_elementor_widgets = $widgets;

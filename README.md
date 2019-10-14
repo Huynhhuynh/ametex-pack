@@ -36,6 +36,20 @@ Elementor add-on for Ametex Theme
  }
 ```
 
+## CSS Variables hook
+```php
+
+# Font
+add_filter( 'apack/css_variables/font', function( $data ) {
+    ...
+} );
+
+# Color
+add_filter( 'apack/css_variables/color', function( $data ) {
+    ...
+} );
+```
+
 ## Register Widget Hook
 ```php
 /**
