@@ -46,7 +46,6 @@ if( ! function_exists( 'apack_make_variables_array' ) ) {
         foreach( $data as $index => $item ) {
             $slug = implode( '-', [ 'apack-' . $type, str_replace( ' ', '-', strtolower( $item['title'] ) ) ] );
             $result[$slug] = [ "name" => "--{$slug}", "value" => $item['value'] ];
-            // array_push( $result, [ "name" => "--{$slug}", "value" => $item['value'] ] );
         }
 
         return apply_filters( 'apack/css_variables/' . $type, $result );
@@ -107,4 +106,26 @@ if( ! function_exists( 'apack_scss_rendering' ) ) {
     }
 
     add_action( 'init', 'apack_scss_rendering', 30 );
+}
+
+if( ! function_exists( 'apack_admin_scripts' ) ) {
+    /**
+     * Admin enqueue scripts
+     *
+     */
+    function apack_admin_scripts() {
+        if( true == apack_get_mode() ) {
+            apack_scss_compiler(
+                file_get_contents( APACK_DIR . '/src/admin.scss' ),
+                APACK_DIR . '/dist/apack.admin.css',
+                APACK_DIR . '/src/',
+                'ScssPhp\ScssPhp\Formatter\Compressed',
+                true
+            );
+        };
+
+        wp_enqueue_style( 'emetex-pack-admin-css', APACK_URI . '/dist/apack.admin.css', false, APACK_VER );
+    }
+
+    add_action( 'admin_enqueue_scripts', 'apack_admin_scripts' );
 }

@@ -39,3 +39,22 @@ if( ! function_exists( 'apack_general_options' ) ) {
 
     add_action( 'carbon_fields_register_fields', 'apack_general_options' );
 }
+
+if( ! function_exists( 'apack_user_social_options' ) ) {
+    /**
+     * User social options
+     *
+     */
+    function apack_user_social_options() {
+
+        Container::make(  'user_meta', __( 'Socials', 'ametex-pack' ) )
+            ->add_fields( array(
+                Field::make( 'text', 'apack_user_facebook', __( 'Facebook Url', 'ametex-pack' ) )
+                    ->set_default_value( 'https://http://facebook.com/' ),
+                Field::make( 'text', 'apack_user_twitter', __( 'Twitter Url', 'ametex-pack' ) )
+                    ->set_default_value( 'https://twitter.com/' ),
+            ) );
+    }
+
+    add_action( 'carbon_fields_register_fields', 'apack_user_social_options' );
+}

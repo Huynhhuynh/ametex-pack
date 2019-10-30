@@ -4,6 +4,7 @@
  *
  */
 
+$template = carbon_get_theme_option( 'apack_blog_single_template' );
 ?>
 <?php get_header(); ?>
     <?php /* Start the Loop */
@@ -14,9 +15,8 @@
         /**
          * apack/blog/single_before hook.
          *
-         * @see apack_blog_heading_bar - 20
          */
-        do_action( 'apack/blog/single_before' );
+        do_action( 'apack/blog/single_before', $template );
         ?>
 
     	<div class="apack-blog-main">
@@ -26,11 +26,8 @@
                     /**
                      * apack/blog/single_content hooks.
                      *
-                     * @see apack_blog_content - 20
-                     * @see apack_blog_related - 24
-                     * @see apack_comment_template - 28
                      */
-                    do_action( 'apack/blog/single_content' );
+                    do_action( 'apack/blog/single_content', $template );
                     ?>
                 </div>
             </div>
@@ -41,7 +38,7 @@
      * apack/blog/single_after hook.
      *
      */
-    do_action( 'apack/blog/single_after' );
+    do_action( 'apack/blog/single_after', $template );
     ?>
 
     <?php endwhile; // End of the loop. ?>

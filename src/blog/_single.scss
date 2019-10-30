@@ -1,13 +1,71 @@
-.apack-custom-blog-content {
-    margin-top: -10vw;
-    background: #FFF;
-    position: relative;
-    z-index: 5;
-    box-shadow: 0 0 70px 0 rgba(1,1,1,.1);
+body.apack-blog-template-classic {
 
-    .content-text {
-        padding: 5vw;
+    .apack-custom-blog-content {
+        margin-top: -10vw;
+        background: #FFF;
+        position: relative;
+        z-index: 5;
+        box-shadow: 0 0 70px 0 rgba(1,1,1,.1);
+
+        .content-text {
+            padding: 5vw;
+        }
+
+        .wp-block-quote {
+            width: calc(100% + 10vw);
+            margin-left: -5vw;
+            padding: 5vw;
+            padding-left: calc(5vw - 5px);
+        }
+
+        .wp-block-image {
+            width: calc(100% + 10vw);
+            margin-left: -5vw;
+        }
     }
+
+    .apack-related-posts-container {
+        padding: 0 5vw;
+    }
+}
+
+body.apack-blog-template-sidebar_sticky {
+
+}
+
+.blog-content-2-cols-summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .entry-summary {
+        width: 70%;
+
+        .wp-post-image {
+            margin-bottom: 2em;
+        }
+
+        .content-text {
+            padding-bottom: 3vw;
+        }
+    }
+
+    .sticky-sidebar {
+        width: 25%;
+
+        .sticky-sidebar__inner {
+            position: relative;
+            height: 100%;
+        }
+
+        .blog-sidebar {
+            position: sticky;
+            top: 35px;
+        }
+    }
+}
+
+.apack-custom-blog-content {
 
     .wp-block-gallery {
         margin: 0;
@@ -30,8 +88,6 @@
     }
 
     .wp-block-image {
-        width: calc(100% + 10vw);
-        margin-left: -5vw;
         max-width: none;
 
         img {
@@ -41,11 +97,8 @@
     }
 
     .wp-block-quote {
-        padding: 5vw;
-        width: calc(100% + 10vw);
-        margin-left: -5vw;
+        padding: 3.5vw;
         font-style: normal;
-        padding-left: calc(5vw - 5px);
 
         cite {
             font-style: normal;
@@ -159,6 +212,203 @@
                                 margin-right: 8px;
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.apack-blog-template-classic {
+
+    .apack-bio-info {
+
+        .bio-info-entry {
+            padding:  4vw 5vw;
+        }
+    }
+}
+
+.apack-bio-info {
+    display: block;
+
+    .line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:before,
+        &:after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            background: #eee;
+        }
+
+        span {
+            display: flex;
+            width: 60px;
+            min-width: 60px;
+            padding:  0 10px;
+
+            svg {
+                width: 100%;
+                fill: #d0d0d0;
+            }
+        }
+    }
+
+    .bio-info-entry {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding:  1em 0;
+
+        .author-avatar {
+            width: 100px;
+
+            @media(max-width: 425px) {
+                width: 100%;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            img {
+                border-radius: 100px;
+            }
+        }
+
+        .author-entry {
+            width: calc(100% - 130px);
+
+            @media(max-width: 425px) {
+                width: 100%;
+                text-align: center;
+            }
+
+            .a-bio {
+
+                @media(max-width: 425px) {
+                    text-align: justify;
+                }
+
+                p {
+                    margin-bottom: 15px;
+                }
+            }
+
+            .a-social {
+                display: flex;
+
+                @media(max-width: 425px) {
+                    justify-content: center;
+                }
+
+                .s-item {
+                    width: 26px;
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+
+                    svg {
+                        width: 100%;
+                        transition: .3s ease;
+                        -webkit-transition: .3s ease;
+                    }
+
+                    &:hover {
+
+                        svg {
+                            fill: var(--apack-color-accent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.apack-blog-mini-heading {
+    display: block;
+    margin: 3em 0 2em;
+
+    .heading-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .auth-avarar {
+            width: 100px;
+
+            img {
+                border-radius: 100px;
+            }
+        }
+
+        .heading-entry {
+            width: calc(100% - 130px);
+
+            .title {
+                font-size: 1.6em;
+                color: #222;
+                margin-bottom: 8px;
+                line-height: normal;
+            }
+
+            .post-meta {
+                display: flex;
+                flex-wrap: wrap;
+                line-height: normal;
+
+                font-size: .9em;
+
+                > * {
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.apack-related-posts-mini {
+    margin-bottom: 35px;
+
+    ul.posts {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style: none;
+
+            &:not(:last-child) {
+                border-bottom: solid 1px #eee;
+                margin-bottom: 15px;
+            }
+
+            .in-cat {
+                line-height: normal;
+                font-size: .8em;
+                margin-bottom: 5px;
+            }
+
+            .title {
+                font-size: .9em;
+                line-height: 1.3em;
+
+                a {
+                    color: #222;
+                    border-bottom: solid 1px transparent;
+                }
+
+                &:hover {
+
+                    a {
+                        border-bottom-color: #222;
                     }
                 }
             }

@@ -18,16 +18,62 @@ use Carbon_Fields\Field;
             Field::make( 'checkbox', 'apack_blog_custom_enable', __( 'Custom Blog Template', 'ametex-pack' ) )
                 ->set_help_text( __( 'Checked to custom blog template enable (default: disable)', 'ametex-pack' ) )
                 ->set_default_value( false ),
-            Field::make( 'text', 'apack_blog_content_width', __( 'Content With', 'ametex-pack' ) )
+            Field::make( 'radio_image', 'apack_blog_single_template', __( 'Template (Detail page)' ) )
+                ->set_options( [
+                    'classic' => APACK_URI . '/images/blog/blog-classic.jpg',
+                    'sidebar_sticky' => APACK_URI . '/images/blog/blog-sidebar-sticky.jpg',
+                    ] )
+                ->set_default_value( 'classic' ),
+            Field::make( 'sidebar', 'apack_blog_custom_sidebar', __( 'Select Custom Sidebar', 'ametex-pack' ) )
+                ->set_conditional_logic( [
+                    [
+                        'field' => 'apack_blog_single_template',
+                        'value' => ['sidebar_sticky'],
+                        'compare' => 'IN'
+                    ] ] ),
+            Field::make( 'text', 'apack_blog_content_width', __( 'Content With (Detail page)', 'ametex-pack' ) )
                 ->set_attribute( 'type', 'number' )
                 ->set_default_value( 980 ),
-            Field::make( 'checkbox', 'apack_blog_related_posts', __( 'Enable Related Posts (Single page)', 'ametex-pack' ) )
+            Field::make( 'checkbox', 'apack_blog_bio_info', __( 'Enable Biographical Info (Detail page)', 'ametex-pack' ) )
+                ->set_default_value( true ),
+            Field::make( 'checkbox', 'apack_blog_related_posts', __( 'Enable Related Posts (Detail page)', 'ametex-pack' ) )
                 ->set_default_value( true ),
             Field::make( 'text', 'apack_blog_related_post_number', __( 'Related Posts Number', 'ametex-pack' ) )
                 ->set_attribute( 'type', 'number' )
                 ->set_default_value( 5 ),
             ] ) );
     }, 24 );
+
+    add_action( 'carbon_fields_register_fields', function() {
+        if( true != carbon_get_theme_option( 'apack_blog_custom_enable' ) ) return;
+
+        Container::make( 'post_meta', __( 'Blog Settings', 'ametex-pack' ) )
+            ->where( 'post_type', '=', 'post' )
+            ->add_fields( [
+                Field::make( 'radio_image', 'apack_blog_single_template', __( 'Template' ) )
+                    ->set_options( [
+                        'classic' => APACK_URI . '/images/blog/blog-classic.jpg',
+                        'sidebar_sticky' => APACK_URI . '/images/blog/blog-sidebar-sticky.jpg',
+                        ] )
+                    ->set_default_value( carbon_get_theme_option( 'apack_blog_single_template' ) ),
+                Field::make( 'sidebar', 'apack_blog_custom_sidebar', __( 'Select Custom Sidebar', 'ametex-pack' ) )
+                    ->set_default_value( carbon_get_theme_option( 'apack_blog_custom_sidebar' ) )
+                    ->set_conditional_logic( [
+                        [
+                            'field' => 'apack_blog_single_template',
+                            'value' => ['sidebar_sticky'],
+                            'compare' => 'IN'
+                        ] ] ),
+                Field::make( 'text', 'apack_blog_content_width', __( 'Content With', 'ametex-pack' ) )
+                    ->set_attribute( 'type', 'number' )
+                    ->set_default_value( carbon_get_theme_option( 'apack_blog_content_width' ) ),
+                Field::make( 'checkbox', 'apack_blog_related_posts', __( 'Enable Related Posts (Detail page)', 'ametex-pack' ) )
+                    ->set_default_value( carbon_get_theme_option( 'apack_blog_related_posts' ) ),
+                Field::make( 'text', 'apack_blog_related_post_number', __( 'Related Posts Number', 'ametex-pack' ) )
+                    ->set_attribute( 'type', 'number' )
+                    ->set_default_value( carbon_get_theme_option( 'apack_blog_related_post_number' ) ),
+                ] );
+    } );
 
     add_action( 'wp_head', function() {
 
@@ -55,6 +101,11 @@ use Carbon_Fields\Field;
         wp_enqueue_style( 'ametex-pack-blog-css', APACK_URI . '/dist/ametex-pack-blog.css', false, APACK_VER );
     } );
 
+    add_filter( 'body_class', function( $classes ) {
+        $classes[] = 'apack-blog-template-' . carbon_get_theme_option( 'apack_blog_single_template' );
+        return $classes;
+    } );
+
     add_action( 'init', function() {
         global $apack_elementor_widgets;
 
@@ -66,10 +117,17 @@ use Carbon_Fields\Field;
          *
          */
         add_filter( 'single_template', 'apack_blog_custom_single_template' );
+
+        # Classic template
         add_action( 'apack/blog/single_before', 'apack_blog_heading_bar', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_content', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_related', 24 );
         add_action( 'apack/blog/single_content', 'apack_comment_template', 28 );
+        add_action( 'apack/blog_article/after', 'apack_blog_bio_info', 20 );
+
+        # Sitebar sticky template
+        add_action( 'apack/blog/single_before', 'apack_blog_mini_heading', 20 );
+        add_action( 'apack/blog/single_content', 'apack_blog_content_two_columns', 20 );
 
         /**
          * Elementor widgets

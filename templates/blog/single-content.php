@@ -8,6 +8,8 @@ global $post;
 ?>
 <article <?php post_class( 'apack-custom-blog-content' ); ?>>
 
+    <?php do_action( 'apack/blog_article/before' ); ?>
+
     <div class="content-text">
 
         <?php do_action( 'apack/blog_content/before' ); ?>
@@ -22,7 +24,16 @@ global $post;
         </div>
 
         <?php do_action( 'apack/blog_content/after' ); ?>
-        
+
     </div>
+
+    <?php
+    /**
+     * apack/blog_article/after hook. 
+     *
+     * @see apack_blog_bio_info - 20
+     */
+    do_action( 'apack/blog_article/after' );
+    ?>
 
 </article>
