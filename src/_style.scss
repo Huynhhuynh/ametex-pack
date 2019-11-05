@@ -1,0 +1,26 @@
+.apack-separate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5em;
+
+    &:before,
+    &:after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background: #eee;
+    }
+
+    span {
+        display: flex;
+        width: 60px;
+        min-width: 60px;
+        padding:  0 10px;
+
+        svg {
+            width: 100%;
+            fill: #d0d0d0;
+        }
+    }
+}

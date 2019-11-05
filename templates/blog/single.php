@@ -4,11 +4,11 @@
  *
  */
 
-$template = carbon_get_theme_option( 'apack_blog_single_template' );
+$template = carbon_get_post_meta( get_the_ID(), 'apack_blog_single_template' );
 ?>
 <?php get_header(); ?>
     <?php /* Start the Loop */
-    while ( have_posts() ) : ?>
+    while ( have_posts() ) : ?> 
         <?php  the_post(); ?>
 
         <?php

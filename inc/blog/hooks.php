@@ -9,7 +9,7 @@ use Carbon_Fields\Field;
 
 {
     /**
-     * Gneral
+     * General
      *
      */
     add_action( 'apack/options', function( $options ) {
@@ -19,10 +19,7 @@ use Carbon_Fields\Field;
                 ->set_help_text( __( 'Checked to custom blog template enable (default: disable)', 'ametex-pack' ) )
                 ->set_default_value( false ),
             Field::make( 'radio_image', 'apack_blog_single_template', __( 'Template (Detail page)' ) )
-                ->set_options( [
-                    'classic' => APACK_URI . '/images/blog/blog-classic.jpg',
-                    'sidebar_sticky' => APACK_URI . '/images/blog/blog-sidebar-sticky.jpg',
-                    ] )
+                ->add_options( 'apack_blog_detail_template' )
                 ->set_default_value( 'classic' ),
             Field::make( 'sidebar', 'apack_blog_custom_sidebar', __( 'Select Custom Sidebar', 'ametex-pack' ) )
                 ->set_conditional_logic( [
@@ -47,14 +44,11 @@ use Carbon_Fields\Field;
     add_action( 'carbon_fields_register_fields', function() {
         if( true != carbon_get_theme_option( 'apack_blog_custom_enable' ) ) return;
 
-        Container::make( 'post_meta', __( 'Blog Settings', 'ametex-pack' ) )
+        Container::make( 'post_meta', __( 'Blog Settings (Ametex Pack)', 'ametex-pack' ) )
             ->where( 'post_type', '=', 'post' )
             ->add_fields( [
                 Field::make( 'radio_image', 'apack_blog_single_template', __( 'Template' ) )
-                    ->set_options( [
-                        'classic' => APACK_URI . '/images/blog/blog-classic.jpg',
-                        'sidebar_sticky' => APACK_URI . '/images/blog/blog-sidebar-sticky.jpg',
-                        ] )
+                    ->add_options( 'apack_blog_detail_template' )
                     ->set_default_value( carbon_get_theme_option( 'apack_blog_single_template' ) ),
                 Field::make( 'sidebar', 'apack_blog_custom_sidebar', __( 'Select Custom Sidebar', 'ametex-pack' ) )
                     ->set_default_value( carbon_get_theme_option( 'apack_blog_custom_sidebar' ) )
@@ -76,11 +70,13 @@ use Carbon_Fields\Field;
     } );
 
     add_action( 'wp_head', function() {
+        if( ! is_singular( 'post' ) ) return;
+        global $post;
 
         ?>
         <style>
             :root {
-                --apack-blog-content-width: <?php echo carbon_get_theme_option( 'apack_blog_content_width' ); ?>px;
+                --apack-blog-content-width: <?php echo carbon_get_post_meta( $post->ID, 'apack_blog_content_width' ); ?>px;
             }
         </style>
         <?php
@@ -102,7 +98,12 @@ use Carbon_Fields\Field;
     } );
 
     add_filter( 'body_class', function( $classes ) {
-        $classes[] = 'apack-blog-template-' . carbon_get_theme_option( 'apack_blog_single_template' );
+
+        if( is_singular( 'post' ) ) {
+            global $post;
+            $classes[] = 'apack-blog-template-' . carbon_get_post_meta( $post->ID, 'apack_blog_single_template' );
+        }
+
         return $classes;
     } );
 
@@ -118,16 +119,22 @@ use Carbon_Fields\Field;
          */
         add_filter( 'single_template', 'apack_blog_custom_single_template' );
 
-        # Classic template
+        # Blog - Classic template
         add_action( 'apack/blog/single_before', 'apack_blog_heading_bar', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_content', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_related', 24 );
         add_action( 'apack/blog/single_content', 'apack_comment_template', 28 );
         add_action( 'apack/blog_article/after', 'apack_blog_bio_info', 20 );
 
-        # Sitebar sticky template
+        # Blog - Sitebar sticky template
         add_action( 'apack/blog/single_before', 'apack_blog_mini_heading', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_content_two_columns', 20 );
+
+        # Blog - Heading 2 columns
+        add_action( 'apack/blog/single_before', 'apack_blog_heading_2_columns', 20 );
+        add_action( 'apack/blog/single_content', 'apack_blog_content_separate', 18 );
+        add_action( 'apack/blog/single_content', 'apack_blog_content', 20 );
+        add_action( 'apack/blog/single_content', 'apack_blog_related_2_columns', 24 );
 
         /**
          * Elementor widgets
