@@ -41,6 +41,33 @@ if( ! function_exists( 'apack_get_mode' ) ) {
     }
 }
 
+if( ! function_exists( 'apack_auto_render_scss_after_save' ) ) {
+    /**
+     *
+     */
+    function apack_auto_render_scss_after_save() {
+        if( true == apack_get_mode() ) return;
+
+        // General
+        apack_scss_compiler(
+            file_get_contents( APACK_DIR . '/src/main.scss' ),
+            APACK_DIR . '/dist/ametex-pack.css',
+            APACK_DIR . '/src/',
+            'ScssPhp\ScssPhp\Formatter\Compressed',
+            true
+        );
+
+        // Backend
+        apack_scss_compiler(
+            file_get_contents( APACK_DIR . '/src/admin.scss' ),
+            APACK_DIR . '/dist/apack.admin.css',
+            APACK_DIR . '/src/',
+            'ScssPhp\ScssPhp\Formatter\Compressed',
+            true
+        );
+    }
+}
+
 if( ! function_exists( 'apack_pagination' ) ) {
     /**
      * Pagination
@@ -309,6 +336,7 @@ if( ! function_exists( 'apack_blog_content_two_columns' ) ) {
         if( ! in_array( $temp, ['sidebar_sticky'] ) ) return;
 
         global $post;
+        $sidebar = carbon_get_post_meta( $post->ID, 'apack_blog_custom_sidebar' );
         ?>
         <div class="blog-content-2-cols-summary">
             <div class="entry-summary">
@@ -322,7 +350,7 @@ if( ! function_exists( 'apack_blog_content_two_columns' ) ) {
 
                     <div class="blog-sidebar bt-sidebar apack-sidebar-container">
                         <ul>
-                            <?php dynamic_sidebar( carbon_get_theme_option( 'apack_blog_custom_sidebar' ) ); ?>
+                            <?php dynamic_sidebar( $sidebar ); ?>
                         </ul>
                     </div>
                 </div>

@@ -28,7 +28,21 @@ class Apack_My_Project {
 
     public function style_rendering() {
         $dev_mode = $dev_mode = apack_get_mode();
-        if( true != $dev_mode ) return;
+        if( true != $dev_mode ) {
+            add_action( 'carbon_fields_theme_options_container_saved', [$this, 'render_scss_after_save_options'] );
+            return;
+        };
+
+        apack_scss_compiler(
+            file_get_contents( APACK_DIR . '/src/my-project/my-project.scss' ),
+            APACK_DIR . '/dist/ametex-pack.my-project.css',
+            APACK_DIR . '/src/my-project/',
+            'ScssPhp\ScssPhp\Formatter\Compressed',
+            true
+        );
+    }
+
+    public function render_scss_after_save_options() {
 
         apack_scss_compiler(
             file_get_contents( APACK_DIR . '/src/my-project/my-project.scss' ),

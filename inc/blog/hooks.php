@@ -162,4 +162,16 @@ use Carbon_Fields\Field;
              );
          }
     } );
+
+    add_action( 'carbon_fields_theme_options_container_saved', function() {
+        if( true == apack_get_mode() ) return;
+
+        apack_scss_compiler(
+            file_get_contents( APACK_DIR . '/src/blog/blog.scss' ),
+            APACK_DIR . '/dist/ametex-pack-blog.css',
+            APACK_DIR . '/src/blog/',
+            'ScssPhp\ScssPhp\Formatter\Compressed',
+            true
+        );
+    } );
 }

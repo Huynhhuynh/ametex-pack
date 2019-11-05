@@ -29,8 +29,32 @@ class Apack_Elementor {
     }
 
     public static function style_rendering() {
-        $dev_mode = $dev_mode = apack_get_mode();
-        if( true != $dev_mode ) return;
+        $dev_mode = apack_get_mode();
+        if( true != $dev_mode ) {
+            add_action( 'carbon_fields_theme_options_container_saved', [$this, 'render_scss_after_save_options'] );
+            return;
+        };
+
+        $register_widgets = $this->get_widgets();
+        $scss_string = '';
+
+        foreach( $register_widgets as $widget ) {
+            if( ! isset( $widget['scss_file'] ) ) continue;
+            if( ! file_exists( $widget['scss_file'] ) ) continue;
+
+            $scss_string .= file_get_contents( $widget['scss_file'] );
+        }
+
+        apack_scss_compiler(
+            $scss_string,
+            APACK_DIR . '/dist/ametex-pack.elementor.css',
+            APACK_DIR . '/src/',
+            'ScssPhp\ScssPhp\Formatter\Compressed',
+            true
+        );
+    }
+
+    public static function render_scss_after_save_options() {
 
         $register_widgets = $this->get_widgets();
         $scss_string = '';
