@@ -33,6 +33,8 @@ use Carbon_Fields\Field;
                 ->set_default_value( 980 ),
             Field::make( 'checkbox', 'apack_blog_bio_info', __( 'Enable Biographical Info (Detail page)', 'ametex-pack' ) )
                 ->set_default_value( true ),
+            Field::make( 'checkbox', 'apack_blog_custom_ul_ol_style', __( 'Enable Custom <ul>, <ol> style (Detail page)', 'ametex-pack' ) )
+                ->set_default_value( true ),
             Field::make( 'checkbox', 'apack_blog_related_posts', __( 'Enable Related Posts (Detail page)', 'ametex-pack' ) )
                 ->set_default_value( true ),
             Field::make( 'text', 'apack_blog_related_post_number', __( 'Related Posts Number', 'ametex-pack' ) )
@@ -104,6 +106,13 @@ use Carbon_Fields\Field;
             $classes[] = 'apack-blog-template-' . carbon_get_post_meta( $post->ID, 'apack_blog_single_template' );
         }
 
+        return $classes;
+    } );
+
+    add_filter( 'body_class', function( $classes ) {
+
+        if( true != carbon_get_theme_option( 'apack_blog_custom_ul_ol_style' ) ) return $classes;
+        $classes[] = 'apack-enable-custom-ul-ol-style';
         return $classes;
     } );
 

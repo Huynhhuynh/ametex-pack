@@ -66,8 +66,13 @@ body.apack-blog-template-heading_2_columns {
     .entry-summary {
         width: 70%;
 
+        @media(max-width: 768px) {
+            width: 100%;
+        }
+
         .wp-post-image {
             margin-bottom: 2em;
+            border-radius: 4px;
         }
 
         .content-text {
@@ -77,6 +82,11 @@ body.apack-blog-template-heading_2_columns {
 
     .sticky-sidebar {
         width: 25%;
+
+        @media(max-width: 768px) {
+            width: 100%;
+            display: none;
+        }
 
         .sticky-sidebar__inner {
             position: relative;
@@ -90,6 +100,70 @@ body.apack-blog-template-heading_2_columns {
     }
 }
 
+body.apack-enable-custom-ul-ol-style {
+
+    .apack-custom-blog-content {
+
+        ul, ol {
+            padding-left: 0;
+        }
+
+        ol:not(.wp-block-gallery) {
+            margin-left: 0;
+            counter-reset: li;
+
+            li {
+                list-style: none;
+                position: relative;
+                margin-bottom: 8px;
+                counter-increment: li;
+                padding-left: 2.2em;
+
+                &:before {
+                    content: ". " counter(li);
+                    color: var(--apack-color-accent);
+                    display: inline-block;
+                    text-align: right;
+                    direction: rtl;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 1em;
+                    white-space: nowrap;
+                }
+
+                ol {
+                    margin-top: 8px;
+                }
+            }
+        }
+
+        ul:not(.wp-block-gallery) {
+            margin-left: 0;
+
+            li {
+                list-style: none;
+                position: relative;
+                padding-left: 2.2em;
+                margin-bottom: 8px;
+
+                &:before {
+                    content: "—";
+                    color: var(--apack-color-accent);
+                    display: inline-block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+
+                ul {
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+}
+
 .apack-custom-blog-content {
 
     .wp-block-gallery {
@@ -98,7 +172,7 @@ body.apack-blog-template-heading_2_columns {
     }
 
     ul, ol {
-        padding-left: 0;
+        padding-left: 0em;
     }
 
     p,
@@ -110,6 +184,14 @@ body.apack-blog-template-heading_2_columns {
 
     img {
         border-radius: 4px;
+    }
+
+    table {
+        margin-bottom: 2em;
+
+        th {
+            color: #222;
+        }
     }
 
     .wp-block-image {
@@ -363,8 +445,17 @@ body.apack-blog-template-classic {
         flex-wrap: wrap;
         align-items: center;
 
+        @media(max-width: 469px) {
+            text-align: center;
+            justify-content: center;
+        }
+
         .auth-avarar {
             width: 100px;
+
+            @media(max-width: 469px) {
+                margin-bottom: 1em;
+            }
 
             img {
                 border-radius: 100px;
@@ -374,19 +465,35 @@ body.apack-blog-template-classic {
         .heading-entry {
             width: calc(100% - 130px);
 
+            @media(max-width: 469px) {
+                width: 100%;
+            }
+
             .title {
                 font-size: 1.6em;
                 color: #222;
-                margin-bottom: 0;
-                line-height: 1.5em;
+                margin-bottom: 5px;
+                line-height: 1.3em;
+
+                @media(max-width: 550px) {
+                    margin-bottom: 8px;
+                }
             }
 
             .post-meta {
                 display: flex;
                 flex-wrap: wrap;
-                line-height: normal;
-
+                line-height: 1.2;
                 font-size: .9em;
+
+                @media(max-width: 550px) {
+                    font-size: 0.8em;
+                    line-height: 1.5em;
+                }
+
+                @media(max-width: 469px) {
+                    justify-content: center;
+                }
 
                 > * {
 
@@ -421,7 +528,7 @@ body.apack-blog-template-classic {
             }
 
             .title {
-                font-size: .9em;
+                font-size: 1em;
                 line-height: 1.3em;
 
                 a {
