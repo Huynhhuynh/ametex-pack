@@ -12,6 +12,7 @@ Elementor add-on for Ametex Theme
 * Options control include Fancybox 3
 * Custom single blog template
 * Support Gutenberg editor
+* Blog single multiple layout (Classic, Sticky Sidebar, Heading 2 columns)
 * ~~Mobile menu friendly~~
 
 ## Synchronized schemes elementor (color, typo)
