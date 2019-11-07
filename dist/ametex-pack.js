@@ -181,7 +181,8 @@
             }
         } )
 
-        $( 'body' ).on( 'click', '.apack-offcanvas-menu .apack-tab-nav .tab-nav-item', function() {
+        $( 'body' ).on( 'click', '.apack-offcanvas-menu .apack-tab-nav .tab-nav-item', function( e ) {
+            e.preventDefault();
             var $self = $( this );
             var key = $self.data( 'tab-key' );
 
