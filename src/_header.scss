@@ -273,10 +273,14 @@ body.apack-header-mobi-custom {
                 .__toggle {
                     position: absolute;
                     right: 20px;
-                    top: 18px;
+                    top: 0;
                     width: 24px;
                     line-height: 0;
+                    box-sizing: content-box;
+                    padding: 18px;
+                    background: #eee;
                     z-index: 3;
+                    display: block;
 
                     svg {
                         width: 100%;
