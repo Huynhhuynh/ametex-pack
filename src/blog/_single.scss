@@ -190,7 +190,9 @@ body.apack-enable-custom-ul-ol-style {
         margin-bottom: 2em;
 
         th {
-            color: #222;
+            color: #FFF;
+            background: var(--apack-color-primary);
+            border-right-color: rgba(1,1,1,.05);
         }
     }
 

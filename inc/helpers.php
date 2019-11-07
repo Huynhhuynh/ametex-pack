@@ -20,8 +20,9 @@ if( ! function_exists( 'apack_scss_compiler' ) ) {
      *
      * @return void
      */
-    function apack_scss_compiler( $scss_string, $out, $import_path = '', $formatter = 'ScssPhp\ScssPhp\Formatter\Compressed', $source_map = false ) {
+    function apack_scss_compiler( $scss_string, $out, $import_path = '', $formatter = 'ScssPhp\ScssPhp\Formatter\Compressed', $source_map = false, $variables = [] ) {
         $scss = new Compiler();
+        $scss->setVariables( $variables );
 
         if( ! empty( $import_path ) ) $scss->setImportPaths( $import_path );
         if( ! empty( $formatter ) ) $scss->setFormatter( $formatter );
@@ -159,6 +160,10 @@ if( ! function_exists( 'apack_svg_icon' ) ) {
             'pinterest' => '<svg x="0px" y="0px" viewBox="0 0 438.557 438.557" style="enable-background:new 0 0 438.557 438.557;" xml:space="preserve"> <g> <path d="M414.418,24.128C398.341,8.047,378.972,0.005,356.323,0.005V0H82.239C59.591,0,40.222,8.044,24.138,24.125 C8.057,40.209,0.015,59.578,0.015,82.226v274.089c0,22.647,8.042,42.018,24.123,58.095c16.084,16.084,35.454,24.126,58.102,24.126 h52.25c-3.239-29.304-2.573-53.481,1.997-72.512l27.978-118.198c-4.568-9.329-6.854-20.841-6.854-34.543 c0-15.796,4.045-29.075,12.137-39.827c8.086-10.757,17.937-16.134,29.547-16.134c9.326,0,16.512,3.092,21.554,9.276 c5.041,6.189,7.566,13.945,7.566,23.272c0,5.898-1.047,12.99-3.138,21.267c-2.098,8.285-4.9,17.99-8.422,29.126 c-3.521,11.135-6.042,19.934-7.566,26.404c-2.663,11.424-0.476,21.27,6.567,29.555c7.042,8.274,16.272,12.422,27.696,12.422 c20.177,0,36.686-11.231,49.539-33.694c12.847-22.456,19.267-49.676,19.267-81.649c0-24.551-7.946-44.54-23.846-59.955 c-15.886-15.418-38.013-23.128-66.376-23.128c-31.78,0-57.526,10.138-77.228,30.407c-19.701,20.271-29.552,44.684-29.552,73.233 c0,16.748,4.761,31.025,14.277,42.828c3.234,3.614,4.283,7.615,3.14,11.995c-0.953,3.237-2.38,9.041-4.283,17.412 c-0.763,2.669-2.141,4.473-4.141,5.428c-2.002,0.951-4.237,0.951-6.711,0c-14.655-6.088-25.747-16.563-33.263-31.409 c-7.517-14.842-11.276-31.977-11.276-51.387c0-12.564,2.047-25.179,6.14-37.831c4.093-12.66,10.422-24.841,18.986-36.545 c8.564-11.709,18.792-22.129,30.69-31.267c11.894-9.132,26.458-16.413,43.682-21.838c17.222-5.424,35.736-8.137,55.524-8.137 c20.181,0,38.927,3.48,56.25,10.426c17.319,6.945,31.833,16.175,43.544,27.69c11.703,11.516,20.889,24.744,27.545,39.687 c6.666,14.938,9.996,30.406,9.996,46.392c0,43.019-10.896,78.564-32.688,106.637c-21.793,28.075-49.916,42.116-84.363,42.116 c-11.43,0-22.128-2.666-32.124-7.994c-9.991-5.328-16.986-11.704-20.984-19.13c-8.374,33.312-13.417,53.197-15.131,59.669 c-4.377,16.751-14.655,36.733-30.833,59.956H356.32c22.647,0,42.017-8.042,58.095-24.126 c16.084-16.084,24.126-35.454,24.126-58.102v-274.1C438.541,59.582,430.499,40.212,414.418,24.128z"/> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg>',
 
             'document' => '<svg viewBox="0 0 512 512"><path d="m24 344v40a64.0727 64.0727 0 0 0 64 64h72v40a7.99977 7.99977 0 0 0 8 8h312a7.99977 7.99977 0 0 0 8-8v-416a7.99977 7.99977 0 0 0 -8-8h-40v-40a7.99977 7.99977 0 0 0 -8-8h-320a7.99977 7.99977 0 0 0 -8 8v312h-72a7.99977 7.99977 0 0 0 -8 8zm448-264v400h-296v-32h200a64.0727 64.0727 0 0 0 64-64v-304zm-352-48h304v352a48 48 0 0 1 -96 0v-40a7.99977 7.99977 0 0 0 -8-8h-200zm-80 320h272v32a63.87059 63.87059 0 0 0 21.71143 48h-245.71143a48.05436 48.05436 0 0 1 -48-48z"/><path d="m216 104h24v16h-24z"/><path d="m256 104h32v16h-32z"/><path d="m304 104h64v16h-64z"/><path d="m176 144h80v16h-80z"/><path d="m272 144h40v16h-40z"/><path d="m328 144h40v16h-40z"/><path d="m176 264h64v16h-64z"/><path d="m256 264h40v16h-40z"/><path d="m312 264h56v16h-56z"/><path d="m176 184h56v16h-56z"/><path d="m248 184h120v16h-120z"/><path d="m176 224h24v16h-24z"/><path d="m216 224h48v16h-48z"/><path d="m280 224h88v16h-88z"/></svg>',
+
+            'menu_dots' => '<svg viewBox="0 0 448 448"><path d="m280 56c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m280 392c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m280 224c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m448 56c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m448 392c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m448 224c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m112 56c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m112 392c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/><path d="m112 224c0 30.929688-25.070312 56-56 56s-56-25.070312-56-56 25.070312-56 56-56 56 25.070312 56 56zm0 0"/></svg>',
+
+            'search' => '<svg enable-background="new 0 0 515.558 515.558" viewBox="0 0 515.558 515.558"><path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z"/></svg>',
 
             'clip' => '<svg viewBox="0 0 64 64""><g id="Clip"><path d="m12.08 57.749a9 9 0 0 0 12.728 0l31.112-31.113a13 13 0 1 0 -18.384-18.385l-20.507 20.506 1.415 1.415 20.506-20.506a11 11 0 1 1 15.556 15.556l-31.112 31.112a7 7 0 0 1 -9.9-9.9l26.87-26.87a3 3 0 0 1 4.242 4.243l-16.263 16.264 1.414 1.414 16.264-16.263a5 5 0 0 0 -7.071-7.071l-26.87 26.87a9 9 0 0 0 0 12.728z"/></g></svg>',
             ] );
@@ -489,5 +494,160 @@ if( ! function_exists( 'apack_blog_detail_template_options' ) ) {
             'sidebar_sticky' => APACK_URI . '/images/blog/blog-sidebar-sticky.jpg',
             'heading_2_columns' => APACK_URI . '/images/blog/blog-heading-2-columns.jpg',
             ] );
+    }
+}
+
+if( ! function_exists( 'apack_header_mobi_custom' ) ) {
+    /**
+     * Header mobi custom template
+     *
+     */
+    function apack_header_mobi_custom() {
+        if( true != carbon_get_theme_option( 'apack_header_custom_mobi_enable' ) ) return;
+        load_template( APACK_DIR . '/templates/header/mobi.php', false );
+    }
+}
+
+if( ! function_exists( 'apack_header_mobi_search_icon' ) ) {
+    /**
+     * Mobi search icon
+     *
+     */
+    function apack_header_mobi_search_icon() {
+        if( true != carbon_get_theme_option( 'apack_header_mobi_search_enable' ) ) return;
+
+        ?>
+        <div class="mobi-search">
+            <div class="__icon">
+                <?php echo apack_svg_icon( 'search' ); ?>
+            </div>
+        </div>
+        <?php
+    }
+}
+
+if( ! function_exists( 'apack_memu_list_options' ) ) {
+    /**
+     *
+     */
+    function apack_memu_list_options() {
+        $options = ['' => __( 'No menu', 'ametex-pack' )];
+        $menus = get_terms( 'nav_menu' );
+
+        foreach( $menus as $menu ) {
+            $options[$menu->term_id] = $menu->name;
+        }
+
+        return $options;
+    }
+}
+
+if( ! function_exists( 'apack_panel_custom_mobi_menu_offcanvas' ) ) {
+    /**
+     * Custom menu offcanvas
+     *
+     */
+    function apack_panel_custom_mobi_menu_offcanvas() {
+        if( true != carbon_get_theme_option( 'apack_header_custom_mobi_enable' ) ) return;
+
+        $tab_entries = apply_filters( 'apack/offvanvas/tab_entries', [
+            'menu' => [
+                'title' => __( 'Menu', 'ametex-pack' ),
+                'svg_icon' => apack_svg_icon( 'menu_dots' ),
+                'content_callback' => 'apack_offcanvas_tab_entry_menu',
+                'class' => '',
+            ],
+            'search' => [
+                'title' => __( 'Search', 'ametex-pack' ),
+                'svg_icon' => apack_svg_icon( 'search' ),
+                'content_callback' => 'apack_offcanvas_tab_entry_search',
+                'class' => '',
+            ]
+            ] );
+
+        set_query_var( 'tab_entries', $tab_entries );
+        load_template( APACK_DIR . '/templates/offcanvas-menu.php', false );
+    }
+}
+
+if( ! function_exists( 'apack_offcanvas_tab_entry_menu' ) ) {
+    /**
+     *
+     */
+    function apack_offcanvas_tab_entry_menu() {
+
+        ?>
+        <div class="heading-text">
+            <h3>
+                <?php _e( 'Menu', 'ametex-pack' ); ?>
+            </h3>
+        </div>
+        <div class="apack-mobi-nav">
+            <?php wp_nav_menu( [
+                'menu' => carbon_get_theme_option( 'apack_header_mobi_nav' ),
+                ] ); ?>
+        </div> <!-- .apack-mobi-nav -->
+        <?php
+    }
+}
+
+if( ! function_exists( 'apack_get_all_categories' ) ) {
+    /**
+     *
+     */
+    function apack_get_all_categories() {
+        return get_categories( array(
+            'orderby' => 'name',
+            'order'   => 'ASC'
+        ) );
+    }
+}
+
+
+if( ! function_exists( 'apack_offcanvas_tab_entry_search' ) ) {
+    /**
+     *
+     */
+    function apack_offcanvas_tab_entry_search() {
+
+        ?>
+        <div class="heading-text">
+            <h3>
+                <?php _e( 'Search', 'ametex-pack' ); ?>
+            </h3>
+        </div>
+
+        <?php do_action( 'apack/offcanvs_tab_entry_search/before' ); ?>
+
+        <form class="apack-search-form" method="get">
+            <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="<?php _e( 'Type to search...', 'ametex-pack' ); ?>"/>
+            <input type="submit"/>
+            <input type="hidden" value="post" name="post_type"/>
+        </form>
+
+        <?php do_action( 'apack/offcanvs_tab_entry_search/after' ); ?>
+
+        <?php
+    }
+}
+
+if( ! function_exists( 'apack_post_cats_block' ) ) {
+
+    function apack_post_cats_block() {
+        ?>
+        <div class="post-cats">
+            <h4><?php _e( 'Categories', 'ametex-pack' ); ?></h4>
+            <ul>
+                <?php foreach( apack_get_all_categories() as $item ) : ?>
+                <li>
+                    <a href="<?php echo esc_url( get_category_link( $item->term_id ) ); ?>">
+                        <span class="name"><?php echo $item->name; ?></span>
+                        <span class="count"><?php echo $item->category_count; ?></span>
+                    </a>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php
     }
 }

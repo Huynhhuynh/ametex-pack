@@ -35,7 +35,7 @@ class Apack_Elementor {
             return;
         };
 
-        $register_widgets = $this->get_widgets();
+        $register_widgets = self::get_widgets();
         $scss_string = '';
 
         foreach( $register_widgets as $widget ) {
@@ -56,7 +56,7 @@ class Apack_Elementor {
 
     public static function render_scss_after_save_options() {
 
-        $register_widgets = $this->get_widgets();
+        $register_widgets = self::get_widgets();
         $scss_string = '';
 
         foreach( $register_widgets as $widget ) {
@@ -85,7 +85,7 @@ class Apack_Elementor {
     }
 
     public function load_widget_options( $options ) {
-        $register_widgets = $this->get_widgets();
+        $register_widgets = self::get_widgets();
 
         $widgets = [];
         foreach( $register_widgets as $name => $item ) {
@@ -105,7 +105,7 @@ class Apack_Elementor {
     }
 
     public function register_widgets() {
-        $register_widgets = $this->get_widgets();
+        $register_widgets = self::get_widgets();
 
         foreach( $register_widgets as $name => $item ) {
 
@@ -166,7 +166,9 @@ add_action( 'setup_theme', function() {
 } );
 
 add_action( 'setup_theme', function() {
+
     if( defined( 'ELEMENTOR_VERSION' ) ) {
+
         Apack_Elementor::instance();
     }
 } );

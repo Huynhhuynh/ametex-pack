@@ -1,0 +1,39 @@
+.widget {
+
+}
+
+.widget_search {
+
+}
+
+.widget_recent_entries {
+
+    ul {
+
+        li {
+            line-height: 1.5em;
+
+            a {
+                color: #222;
+
+                &:hover {
+                    color: var(--apack-color-accent);
+                }
+            }
+        }
+    }
+}
+
+.widget_recent_comments {
+
+    ul {
+
+        li {
+
+            a {
+                font-weight: normal !important;
+                border-bottom: solid 1px;
+            }
+        }
+    }
+}

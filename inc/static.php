@@ -101,7 +101,12 @@ if( ! function_exists( 'apack_scss_rendering' ) ) {
             APACK_DIR . '/dist/ametex-pack.css',
             APACK_DIR . '/src/',
             'ScssPhp\ScssPhp\Formatter\Compressed',
-            true
+            true,
+            [
+                'content-width' => get_option( 'elementor_container_width', 1140 ) . 'px',
+                'tablet-breakpoint' => get_option( 'elementor_viewport_lg', 1025 ) . 'px',
+                'mobile-breakpoint' => get_option( 'elementor_viewport_md', 768 ) . 'px',
+            ]
         );
     }
 

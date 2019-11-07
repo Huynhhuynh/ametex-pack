@@ -164,11 +164,100 @@
         } )
     }
 
+    w.apack.menu_tabs = function() {
+        var tab = $( '.apack-offcanvas-menu .apack-tab-container' );
+
+        $( w ).on( {
+            'apack_hader_mobile_tab_switch' ( e, tab_key ) {
+                var tab_nav = $( '.apack-offcanvas-menu .apack-tab-nav' );
+                var tab_container = $( '.apack-offcanvas-menu .apack-tab-container' );
+                var target_item_index = tab_container.find( `> .__${ tab_key }` ).index();
+
+                tab_container.css( {
+                    marginLeft: `calc(100vw * ${ target_item_index } * -1)`,
+                } );
+
+                tab_nav.find( `.tab-nav-item[data-tab-key="${ tab_key }"]` ).addClass( '__is-current' ).siblings().removeClass( '__is-current' );
+            }
+        } )
+
+        $( 'body' ).on( 'click', '.apack-offcanvas-menu .apack-tab-nav .tab-nav-item', function() {
+            var $self = $( this );
+            var key = $self.data( 'tab-key' );
+
+            $( w ).trigger( 'apack_hader_mobile_tab_switch', [key] );
+        } )
+    }
+
+    w.apack.menu_mobile_custom = function() {
+        w.apack.menu_tabs();
+        var offcanvas = $( '.apack-offcanvas-menu' );
+        var mobi_nav = offcanvas.find( '.apack-mobi-nav ul.menu' );
+        if( mobi_nav.length <= 0 ) return;
+
+        $( w ).on( {
+            'apack_header_mobile_open' ( e, cb ) {
+                $( 'body' ).addClass( '__apack-menu-offcanvs-is-open' );
+                if( cb ) cb.call();
+            },
+            'apack_header_mobile_close' ( e, cb ) {
+                $( 'body' ).removeClass( '__apack-menu-offcanvs-is-open' );
+                if( cb ) cb.call();
+            },
+            'apack_header_offcanvas_active_tab' ( e, tab, cb ) {
+                if( cb ) cb.call();
+            }
+        } )
+
+        $( 'body' ).on( 'click', '.apack-header-custom-mobi .mobi-menu', function( e ) {
+            e.preventDefault();
+            $( w ).trigger( 'apack_header_mobile_open', function() {
+                $( w ).trigger( 'apack_hader_mobile_tab_switch', ['menu'] );
+            } );
+        } )
+
+        $( 'body' ).on( 'click', '.apack-header-custom-mobi .mobi-search', function( e ) {
+            e.preventDefault();
+            $( w ).trigger( 'apack_header_mobile_open', function() {
+                $( w ).trigger( 'apack_hader_mobile_tab_switch', ['search'] );
+            } );
+        } )
+
+        $( 'body' ).on( 'click', '.apack-offcanvas-menu .__close', function( e ) {
+            e.preventDefault();
+            $( w ).trigger( 'apack_header_mobile_close' );
+        } )
+
+        mobi_nav.find( 'li.menu-item-has-children' ).each( function() {
+            var $item = $( this );
+            var toggle = $( `<span>`, {
+                class: '__toggle',
+                html: `<svg x="0px" y="0px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve"> <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 "/> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg>`
+            } );
+
+            $item.children( 'a' ).after( toggle );
+        } )
+
+        mobi_nav.on( 'click', 'span.__toggle', function() {
+            var menu_item = $( this ).parent( 'li.menu-item' );
+            var sub = menu_item.children( 'ul.sub-menu' );
+
+            if( menu_item.hasClass( '__is-open' ) ) {
+                menu_item.removeClass( '__is-open' );
+                sub.stop( true, false ).slideUp( 'slow' );
+            } else {
+                menu_item.addClass( '__is-open' );
+                sub.stop( true, false ).slideDown( 'slow' );
+            }
+        } )
+    }
+
     /**
      * DOM Ready
      */
     $( function() {
         w.apack.sharing();
+        w.apack.menu_mobile_custom();
     } )
 
     /**

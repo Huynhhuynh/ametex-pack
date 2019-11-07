@@ -13,7 +13,7 @@ Elementor add-on for Ametex Theme
 * Custom single blog template
 * Support Gutenberg editor
 * Blog single multiple layout (Classic, Sticky Sidebar, Heading 2 columns)
-* ~~Mobile menu friendly~~
+* Mobile menu friendly ([Video Preview](https://d.pr/free/v/mQr4Pb))
 
 ## Synchronized schemes elementor (color, typo)
 [watch video](https://d.pr/free/v/7UK6qi)
