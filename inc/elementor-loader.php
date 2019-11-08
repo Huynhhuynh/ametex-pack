@@ -31,7 +31,7 @@ class Apack_Elementor {
     public static function style_rendering() {
         $dev_mode = apack_get_mode();
         if( true != $dev_mode ) {
-            add_action( 'carbon_fields_theme_options_container_saved', [$this, 'render_scss_after_save_options'] );
+            add_action( 'carbon_fields_theme_options_container_saved', ['Apack_Elementor', 'render_scss_after_save_options'] );
             return;
         };
 

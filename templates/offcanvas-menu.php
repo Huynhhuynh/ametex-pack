@@ -7,7 +7,7 @@
 ?>
 <div class="apack-offcanvas-menu" style="--apack-offcanvas-tab-cols: <?php echo count( $tab_entries ); ?>;">
 
-    <a href="#" class="__close"><span><?php _e( 'Close', 'ametex-pack' ); ?></span></a>
+    <a href="#" class="__close"><span><?php _e( 'CLOSE', 'ametex-pack' ); ?></span></a>
 
     <div class="__inner">
 

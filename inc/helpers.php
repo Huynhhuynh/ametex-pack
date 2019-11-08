@@ -165,6 +165,8 @@ if( ! function_exists( 'apack_svg_icon' ) ) {
 
             'search' => '<svg enable-background="new 0 0 515.558 515.558" viewBox="0 0 515.558 515.558"><path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z"/></svg>',
 
+            'calendar' => '<svg x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"> <g> <g> <g> <circle cx="386" cy="210" r="20"/> <path d="M432,40h-26V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v20h-91V20c0-11.046-8.954-20-20-20 c-11.046,0-20,8.954-20,20v20h-90V20c0-11.046-8.954-20-20-20s-20,8.954-20,20v20H80C35.888,40,0,75.888,0,120v312 c0,44.112,35.888,80,80,80h153c11.046,0,20-8.954,20-20c0-11.046-8.954-20-20-20H80c-22.056,0-40-17.944-40-40V120 c0-22.056,17.944-40,40-40h25v20c0,11.046,8.954,20,20,20s20-8.954,20-20V80h90v20c0,11.046,8.954,20,20,20s20-8.954,20-20V80h91 v20c0,11.046,8.954,20,20,20c11.046,0,20-8.954,20-20V80h26c22.056,0,40,17.944,40,40v114c0,11.046,8.954,20,20,20 c11.046,0,20-8.954,20-20V120C512,75.888,476.112,40,432,40z"/> <path d="M391,270c-66.72,0-121,54.28-121,121s54.28,121,121,121s121-54.28,121-121S457.72,270,391,270z M391,472 c-44.663,0-81-36.336-81-81s36.337-81,81-81c44.663,0,81,36.336,81,81S435.663,472,391,472z"/> <path d="M420,371h-9v-21c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v41c0,11.046,8.954,20,20,20h29 c11.046,0,20-8.954,20-20C440,379.954,431.046,371,420,371z"/> <circle cx="299" cy="210" r="20"/> <circle cx="212" cy="297" r="20"/> <circle cx="125" cy="210" r="20"/> <circle cx="125" cy="297" r="20"/> <circle cx="125" cy="384" r="20"/> <circle cx="212" cy="384" r="20"/> <circle cx="212" cy="210" r="20"/> </g> </g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg>',
+
             'clip' => '<svg viewBox="0 0 64 64""><g id="Clip"><path d="m12.08 57.749a9 9 0 0 0 12.728 0l31.112-31.113a13 13 0 1 0 -18.384-18.385l-20.507 20.506 1.415 1.415 20.506-20.506a11 11 0 1 1 15.556 15.556l-31.112 31.112a7 7 0 0 1 -9.9-9.9l26.87-26.87a3 3 0 0 1 4.242 4.243l-16.263 16.264 1.414 1.414 16.264-16.263a5 5 0 0 0 -7.071-7.071l-26.87 26.87a9 9 0 0 0 0 12.728z"/></g></svg>',
             ] );
 
@@ -649,5 +651,80 @@ if( ! function_exists( 'apack_post_cats_block' ) ) {
             </ul>
         </div>
         <?php
+    }
+}
+
+if( ! function_exists( 'apack_is_blog_page' ) ) {
+    /**
+     * Is blog page
+     */
+    function apack_is_blog_page() {
+        global $post;
+
+        //Post type must be 'post'.
+        $post_type = get_post_type( $post );
+
+        //Check all blog-related conditional tags, as well as the current post type,
+        //to determine if we're viewing a blog page.
+        return (
+            ( is_home() || is_archive() || is_single() )
+            && ($post_type == 'post')
+        ) ? true : false ;
+    }
+}
+
+
+if( ! function_exists( 'apack_blog_custom_archive_template' ) ) {
+    /**
+     * Custom blog archive template
+     *
+     */
+    function apack_blog_custom_archive_template( $temp ) {
+        if( true != carbon_get_theme_option( 'apack_blog_custom_enable' ) ) return $temp;
+
+        if( true == apack_is_blog_page() ) {
+            $temp = APACK_DIR . '/templates/blog/archive-advance.php';
+        }
+
+        return $temp;
+    }
+}
+
+if( ! function_exists( 'apack_posts_loop' ) ) {
+    /**
+     * Posts loop
+     *
+     */
+    function apack_posts_loop() {
+
+        set_query_var( 'increase', 1 );
+        load_template( apply_filters( 'apack/blog_archive/loop_template', APACK_DIR . '/templates/blog/loop.php' ), false );
+
+    }
+}
+
+if( ! function_exists( 'apack_loop_item_temp' ) ) {
+    /**
+     * Loop item template
+     *
+     */
+    function apack_loop_item_temp( $increase ) {
+        global $post;
+
+        do_action( 'apack/blog_archive/loop_item/before', $post, $increase );
+
+        set_query_var( 'increase', $increase );
+        load_template( apply_filters( 'apack/blog_archive/loop_item_template', APACK_DIR . '/templates/blog/loop-item.php', $post, $increase ), false );
+
+        do_action( 'apack/blog_archive/loop_item/after', $post, $increase );
+    }
+}
+
+if( ! function_exists( 'apack_first_post_loop_excerpt_words' ) ) {
+    /**
+     *
+     */
+    function apack_first_post_loop_excerpt_words( $works, $nth ) {
+        return ( 1 == $nth ) ? 28 : $works;
     }
 }

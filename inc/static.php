@@ -15,7 +15,7 @@ if( ! function_exists( 'apack_scripts' ) ) {
             wp_enqueue_script( 'fancybox', APACK_URI . '/dist/fancybox/jquery.fancybox.min.js', ['jquery'], 3, true );
         }
 
-        if( true == carbon_get_theme_option( 'apack_load_js_owlcarousel_2' ) ) {
+        if( true == carbon_get_theme_option( 'apack_load_js_owlcarousel_2' ) ) { 
             #Owlcarousel
             wp_enqueue_style( 'owlcarousel', APACK_URI . '/dist/owlcarousel/assets/owl.carousel.min.css', false, '2.3.4' );
             wp_enqueue_style( 'owlcarousel-theme', APACK_URI . '/dist/owlcarousel/assets/owl.theme.default.min.css', false, '2.3.4' );

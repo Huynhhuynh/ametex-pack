@@ -18,6 +18,11 @@ use Carbon_Fields\Field;
             Field::make( 'checkbox', 'apack_blog_custom_enable', __( 'Custom Blog Template', 'ametex-pack' ) )
                 ->set_help_text( __( 'Checked to custom blog template enable (default: disable)', 'ametex-pack' ) )
                 ->set_default_value( false ),
+
+            Field::make( 'text', 'apack_blog_archive_content_width', __( 'Content With (Archive page)', 'ametex-pack' ) )
+                ->set_attribute( 'type', 'number' )
+                ->set_default_value( 1140 ),
+
             Field::make( 'radio_image', 'apack_blog_single_template', __( 'Template (Detail page)' ) )
                 ->add_options( 'apack_blog_detail_template' )
                 ->set_default_value( 'classic' ),
@@ -72,13 +77,16 @@ use Carbon_Fields\Field;
     } );
 
     add_action( 'wp_head', function() {
-        if( ! is_singular( 'post' ) ) return;
         global $post;
+        $variables = '--apack-blog-archive-content-width: ' . carbon_get_theme_option( 'apack_blog_archive_content_width' ) . 'px;';
+        if( is_singular( 'post' ) ) {
+            $variables .= '--apack-blog-content-width: ' . carbon_get_post_meta( $post->ID, 'apack_blog_content_width' ) . 'px;';
+        }
 
         ?>
         <style>
             :root {
-                --apack-blog-content-width: <?php echo carbon_get_post_meta( $post->ID, 'apack_blog_content_width' ); ?>px;
+                <?php echo $variables; ?>
             }
         </style>
         <?php
@@ -144,6 +152,13 @@ use Carbon_Fields\Field;
         add_action( 'apack/blog/single_content', 'apack_blog_content_separate', 18 );
         add_action( 'apack/blog/single_content', 'apack_blog_content', 20 );
         add_action( 'apack/blog/single_content', 'apack_blog_related_2_columns', 24 );
+
+        /**
+         * Archive
+         */
+        add_filter( 'home_template', 'apack_blog_custom_archive_template' );
+        add_filter( 'apack/post_loop_item', 'apack_loop_item_temp' );
+        add_filter( 'apack/post_loop_item/excerpt_words', 'apack_first_post_loop_excerpt_words', 20, 2 );
 
         /**
          * Elementor widgets

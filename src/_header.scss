@@ -34,7 +34,7 @@ body.apack-header-mobi-custom {
                     margin-left: 20px;
 
                     > .__icon {
-                        width: 28px;
+                        width: 24px;
 
                         svg {
                             width: 100%;
@@ -102,6 +102,13 @@ body.apack-header-mobi-custom {
         }
     }
 
+}
+
+body.__apack-menu-offcanvs-is-open {
+
+    > *:not(.apack-offcanvas-menu) {
+        filter: blur(2px);
+    }
 }
 
 .apack-offcanvas-menu {
